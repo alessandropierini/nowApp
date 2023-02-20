@@ -1,0 +1,7 @@
+{
+  "name": "nowApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
