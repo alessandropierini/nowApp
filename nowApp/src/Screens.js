@@ -57,7 +57,7 @@ export const Home = ({ navigation }) => (
     <Text>Home</Text>
     <Button title="Example" onPress={() => navigation.push("Details", { name: 'Example' })} />
     <Button title="Example" onPress={() => navigation.push("Details", { name: 'Example2' })} />
-    <Button title="Drawer" onPress={() => alert("Drawer")} />
+    <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
   </ScreenContainer>
 )
 
@@ -77,7 +77,7 @@ export const Profile = ({ navigation }) => {
         screen: 'NewNow',
       }) 
     } />
-      <Button title="Drawer" onPress={() => alert("Drawer")} />
+      <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
       <Button title="Sign Out" onPress={() => alert("Signed out!")} />
     </ScreenContainer>
   )
@@ -107,3 +107,11 @@ export const NewNow = ({ navigation }) => {
     </ScreenContainer>
   )
 }
+
+// Extras
+
+export const Splash = () => (
+  <ScreenContainer>
+    <Text>Loading...</Text>
+  </ScreenContainer>
+);
