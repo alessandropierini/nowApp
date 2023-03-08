@@ -1,4 +1,7 @@
+import React from 'react'
+
 import { View, Text, StyleSheet, Button } from 'react-native'
+import { AuthContext } from './context';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,21 +34,23 @@ export const Welcome = ({ navigation }) => {
 }
 
 export const SignIn = ({ navigation }) => {
+  const { signIn } = React.useContext(AuthContext)
   return (
     <ScreenContainer>
       <Text>Sign In Screen</Text>
       <Button
         title="Login"
-        onPress={() => alert("Logged In")} />
+        onPress={() => signIn()} />
     </ScreenContainer>
   );
 };
 
 export const CreateAccount = ({ navigation }) => {
+  const { signUp } = React.useContext(AuthContext)
   return (
     <ScreenContainer>
       <Text>Create Account Screen</Text>
-      <Button title="Sign Up" onPress={() => alert("Signed up!")} />
+      <Button title="Sign Up" onPress={() => signUp()} />
     </ScreenContainer>
   );
 };
@@ -69,6 +74,8 @@ export const Details = ({ route }) => (
 );
 
 export const Profile = ({ navigation }) => {
+  const { signOut } = React.useContext(AuthContext)
+
   return (
     <ScreenContainer>
       <Text>Profile</Text>
@@ -78,7 +85,7 @@ export const Profile = ({ navigation }) => {
       }) 
     } />
       <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
-      <Button title="Sign Out" onPress={() => alert("Signed out!")} />
+      <Button title="Sign Out" onPress={() => signOut()} />
     </ScreenContainer>
   )
 }

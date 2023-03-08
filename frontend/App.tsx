@@ -1,4 +1,5 @@
 import React from 'react'
+import { View, Text, StyleSheet, Button, Image } from 'react-native'
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -6,12 +7,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { SignIn, CreateAccount, Welcome, Home, Profile, Search, Details, Search2, NewNow, Splash } from './src/Screens'
+import { AuthContext } from './src/context';
 
 const AuthStack = createStackNavigator()
 const Tabs = createBottomTabNavigator()
 const HomeStack = createStackNavigator()
 const ProfileStack = createStackNavigator()
 const Drawer = createDrawerNavigator()
+
+const RootStack = createDrawerNavigator()
 
 const TabsScreen = () => (
     <Tabs.Navigator
@@ -33,7 +37,20 @@ const HomeStackScreen = () => (
             headerShown: true,
             headerBackTitle: "Back",
         }}>
-        <HomeStack.Screen name="Home" component={Home} />
+        <HomeStack.Screen
+            name="Home"
+            component={Home}
+            options={{
+                headerTitle: () => (
+                    <Image style={{ width: 100, height: 120 }} source={require("./assets/NowLogoCompletoBlancoV2-01.png")} resizeMode="contain"/>
+                  ),
+                title: 'Welcome',
+                headerStyle: {
+                    backgroundColor: '#2a3491'
+                },
+                headerTitleAlign:'center',
+
+            }} />
         <HomeStack.Screen name="Details" component={Details}
             options={({ route }) => ({
             })} />
@@ -65,7 +82,7 @@ const SearchStackScreen = () => (
 export default () => {
 
     const [isLoading, setIsLoading] = React.useState(true)
-    const [userToken, setUserToken] = React.useState<string | null>(null)
+    const [userToken, setUserToken] = React.useState(null)
 
     const authContext = React.useMemo(() => {
         return {
@@ -95,37 +112,39 @@ export default () => {
     }
 
     return (
-        <NavigationContainer>
-            {userToken ? (
-                <Drawer.Navigator
-                    screenOptions={{
-                        headerShown: false,
-                    }}>
-                    <Drawer.Screen name="Home" component={TabsScreen} />
-                    <Drawer.Screen name="Profile" component={ProfileStackScreen} />
-                </Drawer.Navigator>
+        <AuthContext.Provider value={authContext}>
+            <NavigationContainer>
+                {userToken ? (
+                    <Drawer.Navigator
+                        screenOptions={{
+                            headerShown: false,
+                        }}>
+                        <Drawer.Screen name="Home" component={TabsScreen} />
+                        <Drawer.Screen name="Profile" component={ProfileStackScreen} />
+                    </Drawer.Navigator>
 
-            ) : (
-                <AuthStack.Navigator
-                    initialRouteName="Welcome"
-                    screenOptions={{
-                        headerShown: true,
-                        headerBackTitle: "Back",
-                    }}
-                >
-                    <AuthStack.Screen name="Welcome" component={Welcome} options={{
-                        headerShown: false
-                    }} />
-                    <AuthStack.Screen name="SignIn" component={SignIn} options={{
-                        title: "Sign in Now!"
-                    }} />
-                    <AuthStack.Screen name="CreateAccount" component={CreateAccount} options={{
-                        title: "Sign Up Now!"
-                    }} />
+                ) : (
+                    <AuthStack.Navigator
+                        initialRouteName="Welcome"
+                        screenOptions={{
+                            headerShown: true,
+                            headerBackTitle: "Back",
+                        }}
+                    >
+                        <AuthStack.Screen name="Welcome" component={Welcome} options={{
+                            headerShown: false
+                        }} />
+                        <AuthStack.Screen name="SignIn" component={SignIn} options={{
+                            title: "Sign in Now!"
+                        }} />
+                        <AuthStack.Screen name="CreateAccount" component={CreateAccount} options={{
+                            title: "Sign Up Now!"
+                        }} />
 
-                </AuthStack.Navigator>
-            )}
-        </NavigationContainer>
+                    </AuthStack.Navigator>
+                )}
+            </NavigationContainer>
+        </AuthContext.Provider>
     )
 }
 
