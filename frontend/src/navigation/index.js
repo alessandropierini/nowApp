@@ -8,7 +8,9 @@ import SignInScreen from '../screens/SignInScreen'
 import SignUpScreen from '../screens/SignUpScreen'
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
 import WelcomeScreen from '../screens/WelcomeScreen';
+
 import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const AuthStack = createStackNavigator()
 
@@ -22,7 +24,7 @@ const Navigation = () => {
                 <AuthStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{title: ""}} />
 
                 <AuthStack.Screen name="Home" component={HomeScreen} options={{title: ""}}/>
-
+                <AuthStack.Screen name="Profile" component={ProfileScreen} />
             </AuthStack.Navigator>
         </NavigationContainer>
     )

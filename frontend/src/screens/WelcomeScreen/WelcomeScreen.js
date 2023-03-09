@@ -30,7 +30,7 @@ const WelcomeScreen = () => {
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
                 <Text style={styles.title}>Welcome to Now!</Text>
                 <CustomButton text="Sign In Now!" onPress={onSignInPressed} />
-                <CustomButton text="Don't have an account? Create one Now!" onPress={onCreatePressed} type="SECONDARY" />
+                <CustomButton text="Create an account Now!" onPress={onCreatePressed} type="SECONDARY" />
                 <Text style={styles.text}>Click here to read about our <Text style={styles.link} onPress={onTermsPressed}>Terms of use & Privacy Policy</Text>!</Text>
 
             </View>

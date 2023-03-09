@@ -4,36 +4,26 @@ import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-const Tabs = createBottomTabNavigator()
 
 const mainColor = "#2a3491"
 
-const HomeScreen = () => {
+const ProfileScreen = () => {
 
-    const { height } = useWindowDimensions()
     const nav = useNavigation()
 
-    const onLogoutPressed = () => {
-        nav.navigate("Welcome")
+    const onSignInPressed = () => {
+        nav.navigate("SignIn")
     }
-
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
-                <Text style={styles.title}>Home</Text>
-                <CustomButton text="Logout Now!" type="TERTIARY" onPress={onLogoutPressed} />
+                <Text style={styles.title}>Profile</Text>
             </View>
         </ScrollView>
     )
 }
-
-/*
-
-*/
 
 const styles = StyleSheet.create({
     root: {
@@ -62,4 +52,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default HomeScreen
+export default ProfileScreen

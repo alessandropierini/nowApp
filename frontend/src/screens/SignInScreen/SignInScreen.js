@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, TextInput, Button } from 'react-native'
 import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm, Controller } from 'react-hook-form'
 
 const mainColor = "#2a3491"
 
@@ -12,11 +13,10 @@ const SignInScreen = () => {
     const nav = useNavigation()
     const { height } = useWindowDimensions()
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const { control, handleSubmit, formState: {errors} } = useForm()
 
-    const onSignInPressed = () => {
-        nav.navigate("Home")
+    const onSignInPressed = (data) => {
+        console.log(data)
     }
 
     const onForgotPressed = () => {
@@ -32,10 +32,26 @@ const SignInScreen = () => {
             <View style={styles.root}>
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
                 <Text style={styles.title}>Sign in Now!</Text>
-                <CustomInput placeholder="Username" value={username} setValue={setUsername} />
-                <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true} />
 
-                <CustomButton text="Sign In" onPress={onSignInPressed} />
+                <CustomInput
+                    name="username"
+                    placeholder="Username"
+                    control={control}
+                    rules={{
+                        required: true
+                    }}
+                />
+                <CustomInput
+                    name="password"
+                    placeholder="Password"
+                    control={control}
+                    secureTextEntry
+                    rules={{
+                        required: true
+                    }}
+                />
+
+                <CustomButton text="Sign In" onPress={handleSubmit(onSignInPressed)} />
                 <CustomButton text="Forgot Password" onPress={onForgotPressed} type="TERTIARY" />
 
                 <CustomButton text="Don't have an account? Create one Now!" onPress={onCreatePressed} type="TERTIARY" />
@@ -44,6 +60,10 @@ const SignInScreen = () => {
     )
 }
 
+/*
+
+
+*/
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
