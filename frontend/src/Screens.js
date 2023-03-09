@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { Image, View, Text, StyleSheet, Button, TextInput } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AuthContext } from './context';
 
 const styles = StyleSheet.create({
@@ -13,8 +14,37 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginVertical: 10,
-    borderRadius: 5
-  }
+    borderRadius: 5,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 50,
+    width: 200,
+    shadowColor: "black"
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  titleText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white"
+  },
+  image: {
+    height: 200,
+    width: 200,
+    paddingTop: 0,
+  },
+  input: {
+    height: 40,
+    width: 250,
+    margin: 12,
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 50
+
+  },
 });
 
 const ScreenContainer = ({ children }) => (
@@ -26,9 +56,17 @@ const ScreenContainer = ({ children }) => (
 export const Welcome = ({ navigation }) => {
   return (
     <ScreenContainer>
-      <Text>Welcome!</Text>
-      <Button title="Sign In Now" onPress={() => navigation.push("SignIn")} />
-      <Button title="Register Now" onPress={() => navigation.push("CreateAccount")} />
+      <Image
+        source={require('../assets/NowLogoIconBlancoV2-01.png')}
+        style={styles.image}
+      />
+      <Text style={styles.titleText}>Welcome!</Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.push("SignIn")}>
+        <Text style={styles.buttonText}>Sign In Now!</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.push("CreateAccount")}>
+        <Text style={styles.buttonText}>Register Now!</Text>
+      </TouchableOpacity>
     </ScreenContainer>
   )
 }
@@ -37,10 +75,23 @@ export const SignIn = ({ navigation }) => {
   const { signIn } = React.useContext(AuthContext)
   return (
     <ScreenContainer>
-      <Text>Sign In Screen</Text>
-      <Button
-        title="Login"
-        onPress={() => signIn()} />
+      <Image
+        source={require('../assets/NowLogoIconBlancoV2-01.png')}
+        style={styles.image}
+      />
+      <Text style={styles.titleText}>Sign In Now!</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="username"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="password"
+      />
+      <TouchableOpacity style={styles.button} onPress={() => signIn()}>
+        <Text style={styles.buttonText}>Sign In</Text>
+      </TouchableOpacity>
+
     </ScreenContainer>
   );
 };
@@ -49,8 +100,27 @@ export const CreateAccount = ({ navigation }) => {
   const { signUp } = React.useContext(AuthContext)
   return (
     <ScreenContainer>
-      <Text>Create Account Screen</Text>
-      <Button title="Sign Up" onPress={() => signUp()} />
+      <Image
+        source={require('../assets/NowLogoIconBlancoV2-01.png')}
+        style={styles.image}
+      />
+      <Text style={styles.titleText}>Create Account Now!</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="username"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="password"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="confirm password"
+      />
+      <TouchableOpacity style={styles.button} onPress={() => signUp()}>
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
+
     </ScreenContainer>
   );
 };
@@ -79,11 +149,11 @@ export const Profile = ({ navigation }) => {
   return (
     <ScreenContainer>
       <Text>Profile</Text>
-      <Button title='New Now' onPress={() => 
-      navigation.navigate('Home', {
-        screen: 'NewNow',
-      }) 
-    } />
+      <Button title='New Now' onPress={() =>
+        navigation.navigate('Home', {
+          screen: 'NewNow',
+        })
+      } />
       <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
       <Button title="Sign Out" onPress={() => signOut()} />
     </ScreenContainer>
@@ -119,6 +189,12 @@ export const NewNow = ({ navigation }) => {
 
 export const Splash = () => (
   <ScreenContainer>
-    <Text>Loading...</Text>
+    <Image
+      source={require('../assets/NowLogoIconV2-01.png')}
+      style={{
+        height: 200,
+        width: 200,
+
+      }} />
   </ScreenContainer>
 );
