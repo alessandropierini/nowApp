@@ -4,7 +4,7 @@ import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 const mainColor = "#2a3491"
 
@@ -38,7 +38,7 @@ const SignInScreen = () => {
                     placeholder="Username"
                     control={control}
                     rules={{
-                        required: true
+                        required: 'Username is required'
                     }}
                 />
                 <CustomInput
@@ -47,7 +47,7 @@ const SignInScreen = () => {
                     control={control}
                     secureTextEntry
                     rules={{
-                        required: true
+                        required: 'Password is required',
                     }}
                 />
 

@@ -4,20 +4,26 @@ import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
+
 
 const mainColor = "#2a3491"
+const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/ 
 
 const SignUpScreen = () => {
 
     const { height } = useWindowDimensions()
     const nav = useNavigation()
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordRepeat, setPasswordRepeat] = useState('')
+    const { control, handleSubmit, formState: { errors }, watch } = useForm({
+        defaultValues: {
+            username: ''
+        }
+    })
+    const pwd = watch('password')
 
-    const onRegisterPressed = () => {
-        nav.navigate("Home")
+    const onRegisterPressed = (data) => {
+        console.log(data)
     }
 
     const onSignInPressed = () => {
@@ -31,12 +37,54 @@ const SignUpScreen = () => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
-                <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
+                <Image source={Logo} style={[styles.logo, { height: height * 0.1 }]} resizeMode="contain" />
                 <Text style={styles.title}>Create an account Now!</Text>
-                <CustomInput placeholder="Username" value={username} setValue={setUsername} />
-                <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry />
-                <CustomInput placeholder="Confirm password" value={passwordRepeat} setValue={setPasswordRepeat} secureTextEntry />
-                <CustomButton text="Register Now!" onPress={onRegisterPressed} />
+
+                <CustomInput
+                    name="username"
+                    placeholder="Username"
+                    control={control}
+                    rules={{
+                        required: 'Username is required',
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
+                    }}
+                />
+                <CustomInput
+                    name="email"
+                    placeholder="email"
+                    control={control}
+                    rules={{
+                        required: 'Email is required',
+                        pattern: {value: EMAIL_REGEX, message: 'Invalid email'}
+                    }}
+                />
+                <CustomInput
+                    name="password"
+                    placeholder="Password"
+                    control={control}
+                    secureTextEntry
+                    rules={{
+                        required: 'Password is required',
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
+                    }}
+                />
+                <CustomInput
+                    name="passwordRepeat"
+                    placeholder="Confirm password"
+                    control={control}
+                    secureTextEntry
+                    rules={{
+                        required: 'Please confirm your password',
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' },
+                        validate: value =>
+                            value === pwd || 'Passwords do not match'
+                    }}
+                />
+
+                <CustomButton text="Register Now!" onPress={handleSubmit(onRegisterPressed)} />
 
                 <Text style={styles.text}>By registering, you accept our <Text style={styles.link} onPress={onTermsPressed}>Terms of use & Privacy Policy</Text>!</Text>
 

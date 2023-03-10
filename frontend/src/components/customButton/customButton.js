@@ -13,8 +13,9 @@ const CustomButton = ({ onPress, text, type = "PRIMARY" }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '80%',
+        width: '60%',
         padding: 15,
+        paddingVertical: 10,
         marginVertical: 5,
         alignItems: 'center',
         borderRadius: 20
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     container_SECONDARY: {
         borderColor: mainColor,
         borderWidth: 2,
-        width: '80%',
+        width: '60%',
     },
     container_TERTIARY: {
         width: '80%',

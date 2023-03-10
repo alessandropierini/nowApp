@@ -4,20 +4,25 @@ import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from 'react-hook-form'
 
 const mainColor = "#2a3491"
+const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
 const ForgotPasswordScreen = () => {
 
     const { height } = useWindowDimensions()
     const nav = useNavigation()
 
-    const [username, setUsername] = useState('')
-    const [newPassword, setNewPassword] = useState('')
-    const [newPasswordRepeat, setNewPasswordRepeat] = useState('')
+    const { control, handleSubmit, formState: { errors }, watch } = useForm({
+        defaultValues: {
+            username: ''
+        }
+    })
+    const pwd = watch('password')
 
-    const onResetPressed = () => {
-        console.warn("onResetPressed")
+    const onResetPressed = (data) => {
+        console.log(data)
     }
 
     const onBackPressed = () => {
@@ -25,19 +30,51 @@ const ForgotPasswordScreen = () => {
     }
 
 
-return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.root}>
-            <Text style={styles.title}>Reset your password Now!</Text>
-            <CustomInput placeholder="Username" value={username} setValue={setUsername} />
-            <CustomInput placeholder="Type a new password" value={newPassword} setValue={setNewPassword} secureTextEntry />
-            <CustomInput placeholder="Confirm password" value={newPasswordRepeat} setValue={setNewPasswordRepeat} secureTextEntry />
-            <CustomButton text="Reset Password Now!" onPress={onResetPressed} />
+    return (
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.root}>
+                <Text style={styles.title}>Reset your password Now!</Text>
 
-            <CustomButton text="Go back to Sign in" onPress={onBackPressed} type="TERTIARY" />
-        </View>
-    </ScrollView>
-)
+                <CustomInput
+                    name="email"
+                    placeholder="email"
+                    control={control}
+                    rules={{
+                        required: 'Email is required',
+                        pattern: { value: EMAIL_REGEX, message: 'Invalid email' }
+                    }}
+                />
+                <CustomInput
+                    name="password"
+                    placeholder="New password"
+                    control={control}
+                    secureTextEntry
+                    rules={{
+                        required: 'Password is required',
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
+                    }}
+                />
+                <CustomInput
+                    name="passwordRepeat"
+                    placeholder="Confirm new password"
+                    control={control}
+                    secureTextEntry
+                    rules={{
+                        required: 'Please confirm your password',
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' },
+                        validate: value =>
+                            value === pwd || 'Passwords do not match'
+                    }}
+                />
+
+                <CustomButton text="Reset Password Now!" onPress={handleSubmit(onResetPressed)} />
+
+                <CustomButton text="Go back to Sign in" onPress={onBackPressed} type="TERTIARY" />
+            </View>
+        </ScrollView>
+    )
 }
 
 const styles = StyleSheet.create({
