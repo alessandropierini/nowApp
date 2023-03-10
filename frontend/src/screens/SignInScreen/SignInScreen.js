@@ -15,13 +15,14 @@ const SignInScreen = () => {
     const nav = useNavigation()
     const { height } = useWindowDimensions()
 
-    const { signIn } = React.useContext()
+    const { signIn } = React.useContext(AuthContext)
 
-    const { control, handleSubmit, formState: {errors} } = useForm()
+    const { control, handleSubmit, formState: { errors } } = useForm()
 
     const onSignInPressed = (data) => {
-        console.log(data)
-        nav.navigate("Home")
+            console.log(data)
+            signIn(data.username, data.password)
+        
     }
 
     const onForgotPressed = () => {

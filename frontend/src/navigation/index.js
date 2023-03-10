@@ -2,6 +2,10 @@ import React, { useEffect } from 'react'
 import { View, Text, ActivityIndicator } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from "@react-navigation/stack";
+import { enableScreens } from 'react-native-screens';
+enableScreens(false);
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import SplashScreen from '../screens/SplashScreen';
 import SignInScreen from '../screens/SignInScreen'
@@ -40,32 +44,90 @@ const HomeTabs = () => {
 
 const Navigation = () => {
 
-    const [isLoading, setIsLoading] = React.useState(true)
-    const [userToken, setUserToken] = React.useState(null)
+    const initialLoginState = {
+        isLoading: true,
+        userName: null,
+        userToken: null
+    }
+
+    loginReducer = (prevState, action) => {
+        switch (action.type) {
+            case 'RETRIEVE_TOKEN':
+                return {
+                    ...prevState,
+                    userToken: action.token,
+                    isLoading: false
+                }
+            case 'LOGIN':
+                return {
+                    ...prevState,
+                    userName: action.id,
+                    userToken: action.token,
+                    isLoading: false
+                }
+            case 'LOGOUT':
+                return {
+                    ...prevState,
+                    userName: null,
+                    userToken: null,
+                    isLoading: false
+                }
+            case 'REGISTER':
+                return {
+                    ...prevState,
+                    userName: action.id,
+                    userToken: action.token,
+                    isLoading: false
+                }
+        }
+    }
+
+    const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState)
 
     const authContext = React.useMemo(() => ({
-        signIn: () => {
-            setIsLoading(false)
-            setUserToken('adf')
+        signIn: async(userName, password) => {
+            let userToken
+            userToken = null
+            if( userName == 'user' && password == 'pass') {
+                try {
+                    userToken = 'asdf'
+                    await AsyncStorage.setItem('userToken', userToken)
+                } catch(e){
+                    console.log(e)
+                }
+            }
+            dispatch ({type: 'LOGIN', id: userName, token: userToken})
         },
         signUp: () => {
             setIsLoading(false)
             setUserToken('adf')
         },
-        signOut: () => {
-            setIsLoading(false)
-            setUserToken(null)
+        signOut: async() => {
+            try {
+                await AsyncStorage.removeItem('userToken')
+            } catch(e){
+                console.log(e)
+            }
+            dispatch ({type: 'LOGOUT'})
+
         }
 
     }))
 
     useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false)
+        setTimeout(async() => {
+            let userToken
+            userToken = null
+            try {
+                userToken = await AsyncStorage.getItem('userToken')
+            } catch(e){
+                console.log(e)
+            }
+            dispatch ({type: 'REGISTER', token: userToken})
         }, 500)
     }, [])
 
-    if (isLoading) {
+    if (loginState.isLoading) {
         return (
             <View>
                 <SplashScreen />
@@ -76,7 +138,11 @@ const Navigation = () => {
     return (
         <AuthContext.Provider value={authContext}>
             <NavigationContainer>
-                <AuthStack />
+                {loginState.userToken !== null ? (
+                    <HomeTabs />
+                ) : (
+                    <AuthStack />
+                )}
             </NavigationContainer>
         </AuthContext.Provider>
     )
@@ -84,10 +150,7 @@ const Navigation = () => {
 
 /*
 
-            <Tab.Navigator>
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Profile" component={ProfileScreen} />
-            </Tab.Navigator>
+
 
 */
 export default Navigation

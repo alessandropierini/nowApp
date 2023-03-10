@@ -7,6 +7,7 @@ import Navigation from './src/navigation'
 const mainColor = "#2a3491"
 
 const App = () => {
+    
     return (
             <SafeAreaView style={styles.root}>
                 <Navigation />

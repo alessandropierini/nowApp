@@ -6,11 +6,14 @@ import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 
+import { AuthContext } from '../../context/AuthContext'
 
 const mainColor = "#2a3491"
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
 const SignUpScreen = () => {
+
+    const { signUp } = React.useContext(AuthContext)
 
     const { height } = useWindowDimensions()
     const nav = useNavigation()
@@ -25,7 +28,7 @@ const SignUpScreen = () => {
     const onRegisterPressed = (data) => {
         console.log(data)
         if (errors) { } else {
-            nav.navigate("Home")
+            signUp()
         }
     }
 

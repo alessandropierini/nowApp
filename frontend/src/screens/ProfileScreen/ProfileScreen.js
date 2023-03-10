@@ -20,7 +20,6 @@ const ProfileScreen = () => {
         <ScreenContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
-                    <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
                     <Text style={styles.title}>Profile</Text>
                 </View>
             </ScrollView>
