@@ -4,6 +4,7 @@ import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
+import { ScreenContainer } from 'react-native-screens'
 
 const mainColor = "#2a3491"
 
@@ -16,12 +17,14 @@ const ProfileScreen = () => {
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.root}>
-                <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
-                <Text style={styles.title}>Profile</Text>
-            </View>
-        </ScrollView>
+        <ScreenContainer>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.root}>
+                    <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
+                    <Text style={styles.title}>Profile</Text>
+                </View>
+            </ScrollView>
+        </ScreenContainer>
     )
 }
 

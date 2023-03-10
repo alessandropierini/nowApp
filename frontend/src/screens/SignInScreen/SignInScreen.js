@@ -6,6 +6,8 @@ import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 
+import { AuthContext } from '../../context/AuthContext'
+
 const mainColor = "#2a3491"
 
 const SignInScreen = () => {
@@ -13,10 +15,13 @@ const SignInScreen = () => {
     const nav = useNavigation()
     const { height } = useWindowDimensions()
 
+    const { signIn } = React.useContext()
+
     const { control, handleSubmit, formState: {errors} } = useForm()
 
     const onSignInPressed = (data) => {
         console.log(data)
+        nav.navigate("Home")
     }
 
     const onForgotPressed = () => {

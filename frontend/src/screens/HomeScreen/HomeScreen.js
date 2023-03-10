@@ -4,10 +4,11 @@ import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-const Tabs = createBottomTabNavigator()
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+
+const Tab = createBottomTabNavigator()
 const mainColor = "#2a3491"
 
 const HomeScreen = () => {

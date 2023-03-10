@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 
 
 const mainColor = "#2a3491"
-const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/ 
+const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
 const SignUpScreen = () => {
 
@@ -24,6 +24,9 @@ const SignUpScreen = () => {
 
     const onRegisterPressed = (data) => {
         console.log(data)
+        if (errors) { } else {
+            nav.navigate("Home")
+        }
     }
 
     const onSignInPressed = () => {
@@ -56,7 +59,7 @@ const SignUpScreen = () => {
                     control={control}
                     rules={{
                         required: 'Email is required',
-                        pattern: {value: EMAIL_REGEX, message: 'Invalid email'}
+                        pattern: { value: EMAIL_REGEX, message: 'Invalid email' }
                     }}
                 />
                 <CustomInput

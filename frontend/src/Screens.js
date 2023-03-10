@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Image, View, Text, StyleSheet, Button, TextInput } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { AuthContext } from './context';
+import { AuthContext } from './context/AuthContext';
 
 const styles = StyleSheet.create({
   container: {
