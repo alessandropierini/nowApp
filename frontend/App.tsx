@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Button, Image, SafeAreaView } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { StyleSheet, SafeAreaView } from 'react-native'
 
 import Navigation from './src/navigation'
 
 const mainColor = "#2a3491"
+const other = '#F9FBFC'
 
 const App = () => {
     
@@ -18,14 +18,8 @@ const App = () => {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        backgroundColor: '#F9FBFC'
+        backgroundColor: mainColor
     }
 })
 
 export default App
-/*
-
-
-
-       
-*/
