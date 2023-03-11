@@ -7,9 +7,6 @@ import { useNavigation } from '@react-navigation/native'
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { AuthContext } from '../../context/AuthContext'
-
-
 const Tab = createBottomTabNavigator()
 const mainColor = "#2a3491"
 
@@ -18,20 +15,11 @@ const HomeScreen = () => {
     const { height } = useWindowDimensions()
     const nav = useNavigation()
 
-    const { signOut } = React.useContext(AuthContext)
-
-
-    const onLogoutPressed = () => {
-        signOut()
-    }
-
-
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
                 <Text style={styles.title}>Home</Text>
-                <CustomButton text="Logout Now!" type="TERTIARY" onPress={onLogoutPressed} />
             </View>
         </ScrollView>
     )

@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
     container_TERTIARY: {
         width: '80%',
     },
+    container_FOLLOW: {
+        backgroundColor: 'black',
+        width: '50%',
+    },
+    text_FOLLOW: {
+        fontWeight: 'bold',
+        color: 'white'
+    },
     text: {
         fontWeight: 'bold',
         color: 'white'
