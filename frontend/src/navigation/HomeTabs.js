@@ -3,11 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, StyleSheet, Button, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-import HomeScreen from '../screens/HomeScreen';
 import ProfileStack from './ProfileStack';
 import NewNowScreen from '../screens/NewNowScreen';
-import NotificationScreen from '../screens/NotificationScreen';
-import FollowingScreen from '../screens/FollowingScreen';
+import HomeStack from './HomeStack';
 
 const Tabs = createBottomTabNavigator()
 
@@ -22,7 +20,7 @@ const HomeTabs = () => {
             tabBarInactiveBackgroundColor: mainColor,
             tabBarActiveBackgroundColor: mainColor
         }}>
-            <Tabs.Screen name="Home" component={HomeScreen}
+            <Tabs.Screen name="Home" component={HomeStack}
                 options={{
                     headerTitle: () => (
                         <Image style={{ width: 100, height: 120 }} source={require("../../assets/NowLogoCompletoBlancoV2-01.png")} resizeMode="contain" />
@@ -37,20 +35,7 @@ const HomeTabs = () => {
                         <Ionicons style={{ color: tabsColor }} name="home" size={24} />
                     )
                 }} />
-            <Tabs.Screen name="Following" component={FollowingScreen} options={{
-                headerTitle: () => (
-                    <Text style={styles.title}>Following</Text>
-                ),
-                tabBarIcon: () => (
-                    <Ionicons style={{ color: tabsColor }} name="people" size={24} />
-                ),
-                title: 'Following',
-                headerStyle: {
-                    backgroundColor: mainColor,
-                },
-                headerTitleAlign: 'center',
-                headerTransparent: false,
-            }} />
+            
             <Tabs.Screen name="New Now" component={NewNowScreen} options={{
                 tabBarIcon: () => (
                     <Image style={{ width: 35 }} source={require("../../assets/NowLogoIconBlancoV2-01.png")} resizeMode="contain" />
@@ -65,20 +50,7 @@ const HomeTabs = () => {
                 headerTitleAlign: 'center',
                 headerTransparent: false,
             }} />
-            <Tabs.Screen name="Notifications" component={NotificationScreen} options={{
-                headerTitle: () => (
-                    <Text style={ styles.title}>Notifications</Text>
-                ),
-                tabBarIcon: () => (
-                    <Ionicons style={{ color: tabsColor }} name="notifications" size={24} />
-                ),
-                title: 'Notifications',
-                headerStyle: {
-                    backgroundColor: mainColor,
-                },
-                headerTitleAlign: 'center',
-                headerTransparent: false,
-            }} />
+           
             <Tabs.Screen name="Profile" component={ProfileStack} options={{
                 headerTitle: () => (
                     <Text style={styles.title}>Sofi</Text>

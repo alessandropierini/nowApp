@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
-import Logo from '../../../assets/NowLogoIconV2-01.png'
-import CustomInput from '../../components/customInput'
-import CustomButton from '../../components/customButton'
+import Logo from '../../../../assets/NowLogoIconV2-01.png'
 import { useNavigation } from '@react-navigation/native'
+import CustomButton from '../../../components/customButton'
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-const Tab = createBottomTabNavigator()
 const mainColor = "#2a3491"
 
 const HomeScreen = () => {
@@ -20,6 +16,7 @@ const HomeScreen = () => {
             <View style={styles.root}>
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
                 <Text style={styles.title}>Home</Text>
+                <CustomButton text="User profile" onPress={() => nav.push("UserProfileScreen")}/>
             </View>
         </ScrollView>
     )
