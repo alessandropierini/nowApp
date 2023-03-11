@@ -33,12 +33,13 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     container_FOLLOW: {
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         width: '50%',
     },
     text_FOLLOW: {
+        fontSize: 16,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'black'
     },
     text: {
         fontWeight: 'bold',

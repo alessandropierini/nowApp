@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
-import { Pressable } from 'react-native';
+import { Pressable, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 
 import ProfileScreen from '../screens/ProfileStackScreens/ProfileScreen';
@@ -18,7 +18,13 @@ const ProfileStack = () => {
 
     const { signOut } = React.useContext(AuthContext)
     const onLogoutPressed = () => {
-        signOut()
+        Alert.alert(
+            'Warning',
+            'Are you sure you want to log out?',
+            [
+                { text: 'Cancel', style: 'cancel' },
+                {text: "Log out", onPress: () => signOut()}]
+        )
     }
 
     return (
@@ -32,6 +38,7 @@ const ProfileStack = () => {
             headerTitleAlign: 'center',
             headerBackTitle: "Back",
             headerTintColor: 'white',
+            
 
         }}>
             <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{

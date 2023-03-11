@@ -55,45 +55,43 @@ const Navigation = () => {
     const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState)
 
     const authContext = React.useMemo(() => ({
-        signIn: async(userName, password) => {
+        signIn: async (userName, password) => {
             let userToken
             userToken = null
-            if( userName == 'user' && password == 'pass') {
+            if (userName == 'user' && password == 'pass') {
                 try {
                     userToken = 'asdf'
                     await AsyncStorage.setItem('userToken', userToken)
-                } catch(e){
+                } catch (e) {
                     console.log(e)
                 }
             }
-            dispatch ({type: 'LOGIN', id: userName, token: userToken})
+            dispatch({ type: 'LOGIN', id: userName, token: userToken })
         },
         signUp: () => {
             setIsLoading(false)
             setUserToken('adf')
         },
-        signOut: async() => {
+        signOut: async () => {
             try {
                 await AsyncStorage.removeItem('userToken')
-            } catch(e){
+            } catch (e) {
                 console.log(e)
             }
-            dispatch ({type: 'LOGOUT'})
-
+            dispatch({ type: 'LOGOUT' })
         }
-
     }))
 
     useEffect(() => {
-        setTimeout(async() => {
+        setTimeout(async () => {
             let userToken
             userToken = null
             try {
                 userToken = await AsyncStorage.getItem('userToken')
-            } catch(e){
+            } catch (e) {
                 console.log(e)
             }
-            dispatch ({type: 'REGISTER', token: userToken})
+            dispatch({ type: 'REGISTER', token: userToken })
         }, 500)
     }, [])
 

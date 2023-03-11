@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Image, StyleSheet, useWindowDimensions, ScrollView, Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Logo from '../../../../assets/NowLogoIconV2-01.png'
+import Logo from '../../../../assets/NowLogoIconBlancoV2-01.png'
 import CustomInput from '../../../components/customInput'
 import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
@@ -11,6 +11,7 @@ import { ScreenContainer } from 'react-native-screens'
 import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
 
 const mainColor = "#2a3491"
+const profilePicture = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngkey.com%2Fmaxpic%2Fu2q8o0o0a9q8w7r5%2F&psig=AOvVaw0fhqPPOuH1XvMrXcBeDP4D&ust=1678655222101000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPilsZXk1P0CFQAAAAAdAAAAABAE'
 
 const ProfileScreen = () => {
 
@@ -27,30 +28,28 @@ const ProfileScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.userInfoSection}>
                     <View style={{ flexDirection: 'row', marginTop: 15 }}>
-                        <Avatar.Image
-                            source={{
-                                uri: 'https://api.adorable.io/avatars/80/abott@adorable.png',
-                            }}
-                            size={80}
-                        />
-                        <View style={{ marginLeft: 15 }}>
-                            <Title style={[styles.title, {
+                        <Image source={Logo} style={styles.logo} resizeMode="contain" />
+                        <View>
+                            <Text style={[styles.title, {
                                 marginTop: 15,
                                 marginBottom: 5,
                                 color: 'white'
-                            }]}>John Doe</Title>
-                            <Caption style={styles.caption}>@j_doe</Caption>
+                            }]}>Sofia Ferrer</Text>
+                            <Text style={styles.caption}>@soferrer06</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 15, alignItems: 'center', justifyContent: 'space-evenly', marginHorizontal: -20}}>
-                        <CustomButton text="Edit" onPress={() => { nav.push('EditProfile') }} type="FOLLOW" />
+                    <View style={styles.bio}>
+                        <Text style={styles.caption}>Soy demasiado cool tengo un novio demasiado bello y yo tambien soy hermosa</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 15, alignItems: 'center', justifyContent: 'space-evenly', marginHorizontal: -20 }}>
+                        <CustomButton text="Edit Profile" onPress={() => { nav.push('EditProfile') }} type="FOLLOW" />
 
                         <View style={styles.followInfo} >
-                            <Text onPress={() => { nav.push('ProfileFollowingScreen') }} style={{ fontWeight: 'bold', color: 'white'}}>Following</Text>
+                            <Text onPress={() => { nav.push('ProfileFollowingScreen') }} style={{ fontWeight: 'bold', color: 'white' }}>Following</Text>
                             <Text style={{ color: 'white' }}>123</Text>
                         </View>
 
-                        <View  style={styles.followInfo}>
+                        <View style={styles.followInfo}>
                             <Text onPress={() => { nav.push('ProfileFollowersScreen') }} style={{ fontWeight: 'bold', color: 'white' }}>Followers</Text>
                             <Text style={{ color: 'white' }}>157</Text>
                         </View>
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 14,
         fontWeight: '500',
-        color: 'white'
+        color: 'white',
     },
     row: {
         flexDirection: 'row',
@@ -101,8 +100,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: '70%',
-        maxWidth: 500,
-        maxHeight: 500
+        maxWidth: 80,
+        maxHeight: 80
     },
     title: {
         fontSize: 24,
@@ -116,8 +115,12 @@ const styles = StyleSheet.create({
     },
     link: {
         color: mainColor,
-
     },
+    bio: {
+        flex: 5,
+        marginTop: 20,
+        marginBottom: 1,
+    }
 })
 
 export default ProfileScreen
