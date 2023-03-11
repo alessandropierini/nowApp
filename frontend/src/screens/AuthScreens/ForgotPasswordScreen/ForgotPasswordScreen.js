@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
-import Logo from '../../../assets/NowLogoIconV2-01.png'
-import CustomInput from '../../components/customInput'
-import CustomButton from '../../components/customButton'
+import Logo from '../../../../assets/NowLogoIconV2-01.png'
+import CustomInput from '../../../components/customInput'
+import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
-
-import { AuthContext } from '../../context/AuthContext'
 
 const mainColor = "#2a3491"
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
-const SignUpScreen = () => {
-
-    const { signUp } = React.useContext(AuthContext)
+const ForgotPasswordScreen = () => {
 
     const { height } = useWindowDimensions()
     const nav = useNavigation()
@@ -25,37 +21,20 @@ const SignUpScreen = () => {
     })
     const pwd = watch('password')
 
-    const onRegisterPressed = (data) => {
+    const onResetPressed = (data) => {
         console.log(data)
-        if (errors) { } else {
-            signUp()
-        }
     }
 
-    const onSignInPressed = () => {
+    const onBackPressed = () => {
         nav.navigate("SignIn")
     }
 
-    const onTermsPressed = () => {
-        console.warn("terms")
-    }
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
-                <Image source={Logo} style={[styles.logo, { height: height * 0.1 }]} resizeMode="contain" />
-                <Text style={styles.title}>Create an account Now!</Text>
+                <Text style={styles.title}>Reset your password Now!</Text>
 
-                <CustomInput
-                    name="username"
-                    placeholder="Username"
-                    control={control}
-                    rules={{
-                        required: 'Username is required',
-                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
-                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
-                    }}
-                />
                 <CustomInput
                     name="email"
                     placeholder="email"
@@ -67,7 +46,7 @@ const SignUpScreen = () => {
                 />
                 <CustomInput
                     name="password"
-                    placeholder="Password"
+                    placeholder="New password"
                     control={control}
                     secureTextEntry
                     rules={{
@@ -78,7 +57,7 @@ const SignUpScreen = () => {
                 />
                 <CustomInput
                     name="passwordRepeat"
-                    placeholder="Confirm password"
+                    placeholder="Confirm new password"
                     control={control}
                     secureTextEntry
                     rules={{
@@ -90,11 +69,9 @@ const SignUpScreen = () => {
                     }}
                 />
 
-                <CustomButton text="Register Now!" onPress={handleSubmit(onRegisterPressed)} />
+                <CustomButton text="Reset Password Now!" onPress={handleSubmit(onResetPressed)} />
 
-                <Text style={styles.text}>By registering, you accept our <Text style={styles.link} onPress={onTermsPressed}>Terms of use & Privacy Policy</Text>!</Text>
-
-                <CustomButton text="Already have an account? Sign in Now!" onPress={onSignInPressed} type="TERTIARY" />
+                <CustomButton text="Go back to Sign in" onPress={onBackPressed} type="TERTIARY" />
             </View>
         </ScrollView>
     )
@@ -127,4 +104,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SignUpScreen
+export default ForgotPasswordScreen

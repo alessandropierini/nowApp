@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, TextInput, Button } from 'react-native'
-import Logo from '../../../assets/NowLogoIconV2-01.png'
-import CustomInput from '../../components/customInput'
-import CustomButton from '../../components/customButton'
+import Logo from '../../../../assets/NowLogoIconV2-01.png'
+import CustomInput from '../../../components/customInput'
+import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../../../context/AuthContext'
 
 const mainColor = "#2a3491"
 

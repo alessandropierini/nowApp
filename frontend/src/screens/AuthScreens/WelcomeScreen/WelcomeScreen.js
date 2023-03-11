@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
-import Logo from '../../../assets/NowLogoIconV2-01.png'
-import CustomInput from '../../components/customInput'
-import CustomButton from '../../components/customButton'
+import Logo from '../../../../assets/NowLogoIconV2-01.png'
+import CustomInput from '../../../components/customInput'
+import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 
 const mainColor = "#2a3491"

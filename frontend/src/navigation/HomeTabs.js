@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileStack from './ProfileStack';
 import NewNowScreen from '../screens/NewNowScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import FollowingScreen from '../screens/FollowingScreen';
@@ -79,7 +79,7 @@ const HomeTabs = () => {
                 headerTitleAlign: 'center',
                 headerTransparent: false,
             }} />
-            <Tabs.Screen name="Profile" component={ProfileScreen} options={{
+            <Tabs.Screen name="Profile" component={ProfileStack} options={{
                 headerTitle: () => (
                     <Text style={styles.title}>Sofi</Text>
                 ),
@@ -92,6 +92,7 @@ const HomeTabs = () => {
                 },
                 headerTitleAlign: 'center',
                 headerTransparent: false,
+                headerShown: false,
             }} />
         </Tabs.Navigator>)
 }

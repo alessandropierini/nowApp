@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
-import Logo from '../../../assets/NowLogoIconV2-01.png'
-import CustomInput from '../../components/customInput'
-import CustomButton from '../../components/customButton'
+import Logo from '../../../../assets/NowLogoIconV2-01.png'
+import CustomInput from '../../../components/customInput'
+import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
 
@@ -21,6 +21,15 @@ const ProfileScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <Text style={styles.title}>Profile</Text>
+                </View>
+                <View>
+                    <Text onPress={() => {nav.push('EditProfile')}}>Edit Profile</Text>
+                </View>
+                <View>
+                    <Text onPress={() => {nav.push('ProfileFollowingScreen')}}>Following</Text>
+                </View>
+                <View>
+                    <Text onPress={() => {nav.push('ProfileFollowersScreen')}}>Followers</Text>
                 </View>
             </ScrollView>
         </ScreenContainer>
