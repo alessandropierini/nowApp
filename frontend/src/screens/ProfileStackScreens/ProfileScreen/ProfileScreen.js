@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Image, StyleSheet, useWindowDimensions, ScrollView, Pressable } from 'react-native'
+import { View, Image, StyleSheet, useWindowDimensions, ScrollView, Pressable, Text } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Logo from '../../../../assets/NowLogoIconBlancoV2-01.png'
@@ -8,20 +8,11 @@ import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
 
-import { Avatar, Title, Caption, Text, TouchableRipple } from 'react-native-paper';
-
 const mainColor = "#2a3491"
-const profilePicture = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngkey.com%2Fmaxpic%2Fu2q8o0o0a9q8w7r5%2F&psig=AOvVaw0fhqPPOuH1XvMrXcBeDP4D&ust=1678655222101000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPilsZXk1P0CFQAAAAAdAAAAABAE'
 
 const ProfileScreen = () => {
 
     const nav = useNavigation()
-
-    const onFollowPressed = () => {
-        console.warn("Followed")
-    }
-
-
 
     return (
         <ScreenContainer>
@@ -55,13 +46,6 @@ const ProfileScreen = () => {
                         </View>
                     </View>
                 </View>
-
-
-
-
-
-
-
             </ScrollView>
         </ScreenContainer>
     )

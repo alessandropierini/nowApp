@@ -20,22 +20,14 @@ const HomeTabs = () => {
             tabBarInactiveBackgroundColor: mainColor,
             tabBarActiveBackgroundColor: mainColor
         }}>
-            <Tabs.Screen name="Home" component={HomeStack}
-                options={{
-                    headerTitle: () => (
-                        <Image style={{ width: 100, height: 120 }} source={require("../../assets/NowLogoCompletoBlancoV2-01.png")} resizeMode="contain" />
-                    ),
-                    title: 'Welcome',
-                    headerStyle: {
-                        backgroundColor: mainColor,
-                    },
-                    headerTitleAlign: 'center',
-                    headerTransparent: false,
-                    tabBarIcon: () => (
-                        <Ionicons style={{ color: tabsColor }} name="home" size={24} />
-                    )
-                }} />
-            
+            <Tabs.Screen name="Home" component={HomeStack} options={{
+                title: 'Now',
+                headerShown: false,
+                tabBarIcon: () => (
+                    <Ionicons style={{ color: tabsColor }} name="home" size={24} />
+                ),
+            }} />
+
             <Tabs.Screen name="New Now" component={NewNowScreen} options={{
                 tabBarIcon: () => (
                     <Image style={{ width: 35 }} source={require("../../assets/NowLogoIconBlancoV2-01.png")} resizeMode="contain" />
@@ -50,7 +42,7 @@ const HomeTabs = () => {
                 headerTitleAlign: 'center',
                 headerTransparent: false,
             }} />
-           
+
             <Tabs.Screen name="Profile" component={ProfileStack} options={{
                 headerTitle: () => (
                     <Text style={styles.title}>Sofi</Text>
