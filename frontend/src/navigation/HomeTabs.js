@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, StyleSheet, Button, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
@@ -13,6 +13,7 @@ const mainColor = "#2a3491"
 const tabsColor = 'white'
 
 const HomeTabs = () => {
+
     return (
         <Tabs.Navigator initialRouteName='Home' screenOptions={{
             headerShown: true,
@@ -31,7 +32,7 @@ const HomeTabs = () => {
 
             <Tabs.Screen name="New Now" component={NewNowScreen} options={{
                 tabBarIcon: () => (
-                    <Image style={{ width: 35 }} source={require("../../assets/NowLogoIconBlancoV2-01.png")} resizeMode="contain" />
+                    <Image style={{ width: 35, height: 35 }} source={require("../../assets/NowLogoIconBlancoV2-01.png")} resizeMode="contain" />
                 ),
                 headerTitle: () => (
                     <Image style={{ width: 40 }} source={require("../../assets/NowLogoIconBlancoV2-01.png")} resizeMode="contain" />

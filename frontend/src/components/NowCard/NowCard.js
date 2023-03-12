@@ -23,7 +23,7 @@ const NowCard = ({ id, name, verified, tweet, image, prof, time, like, reply }) 
                 <View style={styles.topCont}>
                     <View style={styles.nameCont}>
                         <Text style={styles.nameText}>{name}</Text>
-                        {verified ? <MaterialIcons name="verified" color={mainColor} size={20} /> : []}
+                        {verified&&<MaterialIcons name="verified" color={mainColor} size={20} />}
 
                         <Text style={styles.idText}>@{id}</Text>
                         <Text style={styles.idText}>{time} ago</Text>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         paddingBottom: 5,
-        borderBottomColor: '#2a2e30',
+        borderBottomColor: 'gray',
         borderBottomWidth: 1
     },
     rightCont: {

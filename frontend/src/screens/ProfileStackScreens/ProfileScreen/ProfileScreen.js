@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { View, Image, StyleSheet, useWindowDimensions, ScrollView, Pressable, Text } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Logo from '../../../../assets/NowLogoIconBlancoV2-01.png'
 import CustomInput from '../../../components/customInput'

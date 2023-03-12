@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import Logo from '../../../../assets/NowLogoIconV2-01.png'
 import { useNavigation } from '@react-navigation/native'
@@ -13,26 +13,26 @@ const HomeScreen = () => {
 
     const { height } = useWindowDimensions()
     const nav = useNavigation()
+    const data = DummyData
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
-                {DummyData.map(dat =>
+                {data.map(dat =>
                     <NowCard
-                        key = {dat.id}
+                        key={dat.id}
                         prof={dat.prof}
-                        id ={dat.id}
+                        id={dat.id}
                         name={dat.name}
-                        verified = {dat.verified}
+                        verified={dat.verified}
                         image={dat.image}
                         tweet={dat.tweet}
-                        time = {dat.time}
+                        time={dat.time}
                         like={dat.like}
                         reply={dat.reply}
                     />)}
 
                 <CustomButton text="User profile" onPress={() => nav.push("UserProfileScreen")} />
-
             </View>
         </ScrollView>
     )
