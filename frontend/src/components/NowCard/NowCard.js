@@ -2,24 +2,29 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const mainColor = "#2a3491"
+const defaultImage = "https://t3.ftcdn.net/jpg/00/64/67/52/360_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg"
 
-const NowCard = ({id, name, verified, tweet, image, prof, time, like, reply}) => {
+const NowCard = ({ id, name, verified, tweet, image, prof, time, like, reply }) => {
     return (
         <View style={styles.container}>
             <View style={styles.leftCont}>
-                <Image
-                    style={{ height: 30, width: 30, borderRadius: 30, margin: 8 }}
-                    source={{ uri: prof }}
-                />
+                {prof ?
+                    <Image
+                        style={{ height: 30, width: 30, borderRadius: 30, margin: 8 }}
+                        source={{ uri: prof }}
+                    /> :
+                    <Image
+                        style={{ height: 30, width: 30, borderRadius: 30, margin: 8 }}
+                        source={{ uri: defaultImage }} />}
             </View>
             <View style={styles.rightCont}>
                 <View style={styles.topCont}>
                     <View style={styles.nameCont}>
                         <Text style={styles.nameText}>{name}</Text>
-                        <MaterialIcons name="verified" color={mainColor} size={20} />
+                        {verified ? <MaterialIcons name="verified" color={mainColor} size={20} /> : []}
+
                         <Text style={styles.idText}>@{id}</Text>
                         <Text style={styles.idText}>{time} ago</Text>
                     </View>
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
     iconCont: {
         flexDirection: 'row',
         paddingHorizontal: 5
-        
+
     }
 
 })

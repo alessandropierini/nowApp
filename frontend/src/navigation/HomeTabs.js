@@ -18,7 +18,8 @@ const HomeTabs = () => {
             headerShown: true,
             tabBarShowLabel: false,
             tabBarInactiveBackgroundColor: mainColor,
-            tabBarActiveBackgroundColor: mainColor
+            tabBarActiveBackgroundColor: mainColor,
+            backgroundColor: mainColor
         }}>
             <Tabs.Screen name="Home" component={HomeStack} options={{
                 title: 'Now',

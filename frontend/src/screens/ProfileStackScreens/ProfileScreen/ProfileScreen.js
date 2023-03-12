@@ -8,6 +8,9 @@ import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
 
+import NowCard from '../../../components/NowCard/NowCard'
+import { DummyData } from '../../../mock/DummyData'
+
 const mainColor = "#2a3491"
 
 const ProfileScreen = () => {
@@ -45,6 +48,21 @@ const ProfileScreen = () => {
                             <Text style={{ color: 'white' }}>157</Text>
                         </View>
                     </View>
+                </View>
+                <View>
+                    {DummyData.map(dat =>
+                        <NowCard
+                            key={dat.id}
+                            prof={dat.prof}
+                            id={dat.id}
+                            name={dat.name}
+                            verified={dat.verified}
+                            image={dat.image}
+                            tweet={dat.tweet}
+                            time={dat.time}
+                            like={dat.like}
+                            reply={dat.reply}
+                        />)}
                 </View>
             </ScrollView>
         </ScreenContainer>

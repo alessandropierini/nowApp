@@ -57,6 +57,16 @@ const SignUpScreen = () => {
                     }}
                 />
                 <CustomInput
+                    name="  "
+                    placeholder="Username"
+                    control={control}
+                    rules={{
+                        required: 'Username is required',
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
+                    }}
+                />
+                <CustomInput
                     name="email"
                     placeholder="email"
                     control={control}
