@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
 import Logo from '../../../../assets/NowLogoIconV2-01.png'
 import { useNavigation } from '@react-navigation/native'
+
 import CustomButton from '../../../components/customButton'
+import NowCard from '../../../components/NowCard/NowCard'
+import { DummyData } from '../../../mock/DummyData'
 
 const mainColor = "#2a3491"
 
@@ -14,9 +17,22 @@ const HomeScreen = () => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
-                <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode="contain" />
-                <Text style={styles.title}>Home</Text>
-                <CustomButton text="User profile" onPress={() => nav.push("UserProfileScreen")}/>
+                {DummyData.map(dat =>
+                    <NowCard
+                        key = {dat.id}
+                        prof={dat.prof}
+                        id ={dat.id}
+                        name={dat.name}
+                        verified = {dat.verified}
+                        image={dat.image}
+                        tweet={dat.tweet}
+                        time = {dat.time}
+                        like={dat.like}
+                        reply={dat.reply}
+                    />)}
+
+                <CustomButton text="User profile" onPress={() => nav.push("UserProfileScreen")} />
+
             </View>
         </ScrollView>
     )
