@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, TextInput, Dimensions } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, TextInput, Dimensions, TouchableOpacity } from 'react-native'
 import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const mainColor = "#2a3491"
 const ScreenWidth = Dimensions.get('window').width
@@ -15,8 +16,8 @@ const NewNowScreen = () => {
 
     const nav = useNavigation()
 
-    const onSignInPressed = () => {
-        nav.navigate("SignIn")
+    const onAddImagePressed = () => {
+        console.warn('image added')
     }
 
     return (
@@ -31,13 +32,17 @@ const NewNowScreen = () => {
                         multiline
                         autoCorrect
                         autoCapitalize='sentences'
-                        numberOfLines={10}
+                        numberOfLines={5}
                         autoFocus={true}
                     />
                 </View>
-                <View style={[styles.button, { flexDirection: 'row', justifyContent: 'center', marginLeft: 1 }]}>
-                        <CustomButton text="Upload image" type="FOLLOW"/>
-                    <CustomButton text="Post this Now!" type="FOLLOW" />
+                <View style={{ alignItems: 'center' }}>
+                    <TouchableOpacity style={styles.imageButton} onPress={onAddImagePressed}>
+                            <MaterialCommunityIcons name="image-plus" size={50} color={'white'}/>
+                    </TouchableOpacity>
+                    <View style={styles.button}>
+                        <CustomButton text="Post this Now!" type="PRIMARY" />
+                    </View>
                 </View>
             </ScrollView>
         </ScreenContainer>
@@ -60,11 +65,25 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         paddingRight: 25,
         fontSize: 18,
-        marginTop: 5,
+        marginTop: 10,
+        paddingBottom: 25
     },
     button: {
         alignItems: 'center'
-    }
+    },
+    imageButton: {
+        backgroundColor: '#cdcdcd',
+        height: 250,
+        width: ScreenWidth - 50,
+        borderRadius: 10,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 15,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
 })
 
 export default NewNowScreen
