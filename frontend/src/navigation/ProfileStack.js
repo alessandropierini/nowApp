@@ -5,8 +5,8 @@ import { Ionicons } from '@expo/vector-icons'
 
 import ProfileScreen from '../screens/ProfileStackScreens/ProfileScreen';
 import EditProfileScreen from '../screens/ProfileStackScreens/EditProfileScreen';
-import ProfileFollowersScreen from '../screens/ProfileStackScreens/ProfileFollowersScreen';
-import ProfileFollowingScreen from '../screens/ProfileStackScreens/ProfileFollowingScreen';
+import ProfileFollowersScreen from '../screens/CommonScreens/ProfileFollowersScreen';
+import ProfileFollowingScreen from '../screens/CommonScreens/ProfileFollowingScreen';
 
 import { AuthContext } from '../context/AuthContext';
 

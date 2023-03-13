@@ -22,7 +22,7 @@ const SearchScreen = ({ navigation }) => {
                 />
             ),
             headerRight: () => (
-                <MaterialIcons name="settings" color={'white'} size={25} style={styles.settingIcon} />
+                <MaterialIcons name="search" color={'white'} size={25} style={styles.settingIcon} />
             )
         })
     ), [])
