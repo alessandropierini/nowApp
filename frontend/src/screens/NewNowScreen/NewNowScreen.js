@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, TextInput, Dimensions } from 'react-native'
 import Logo from '../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
@@ -7,6 +7,9 @@ import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
 
 const mainColor = "#2a3491"
+const ScreenWidth = Dimensions.get('window').width
+const ScreenHeight = Dimensions.get('window').height
+
 
 const NewNowScreen = () => {
 
@@ -20,7 +23,21 @@ const NewNowScreen = () => {
         <ScreenContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
-                    <Text style={styles.title}>NewNow</Text>
+                    <TextInput
+                        placeholder='Whats on your mind right Now?'
+                        placeholderTextColor={'gray'}
+                        maxLength={150}
+                        style={styles.searchText}
+                        multiline
+                        autoCorrect
+                        autoCapitalize='sentences'
+                        numberOfLines={10}
+                        autoFocus={true}
+                    />
+                </View>
+                <View style={[styles.button, { flexDirection: 'row', justifyContent: 'center', marginLeft: 1 }]}>
+                        <CustomButton text="Upload image" type="FOLLOW"/>
+                    <CustomButton text="Post this Now!" type="FOLLOW" />
                 </View>
             </ScrollView>
         </ScreenContainer>
@@ -30,28 +47,24 @@ const NewNowScreen = () => {
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
-        padding: 20,
-
     },
-    logo: {
-        width: '70%',
-        maxWidth: 500,
-        maxHeight: 500
+    searchText: {
+        flex: 2,
+        backgroundColor: 'white',
+        paddingLeft: 25,
+        textAlignVertical: 'top',
+        height: '100%',
+        width: ScreenWidth,
+        marginBottom: 12,
+        color: 'black',
+        paddingTop: 15,
+        paddingRight: 25,
+        fontSize: 18,
+        marginTop: 5,
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: mainColor,
-        margin: 10,
-    },
-    text: {
-        color: 'gray',
-        marginVertical: 10,
-    },
-    link: {
-        color: mainColor,
-
-    },
+    button: {
+        alignItems: 'center'
+    }
 })
 
 export default NewNowScreen

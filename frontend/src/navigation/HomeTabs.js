@@ -20,7 +20,7 @@ const HomeTabs = () => {
             tabBarShowLabel: false,
             tabBarInactiveBackgroundColor: mainColor,
             tabBarActiveBackgroundColor: mainColor,
-            backgroundColor: mainColor
+            backgroundColor: mainColor,
         }}>
             <Tabs.Screen name="Home" component={HomeStack} options={{
                 title: 'Now',
@@ -52,7 +52,6 @@ const HomeTabs = () => {
                 tabBarIcon: () => (
                     <Ionicons style={{ color: tabsColor }} name="person" size={24} />
                 ),
-                title: 'Sofi',
                 headerStyle: {
                     backgroundColor: mainColor,
                 },

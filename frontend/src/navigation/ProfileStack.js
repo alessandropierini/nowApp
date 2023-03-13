@@ -38,7 +38,6 @@ const ProfileStack = () => {
             headerTitleAlign: 'center',
             headerBackTitle: "Back",
             headerTintColor: 'white',
-            
 
         }}>
             <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{

@@ -1,5 +1,38 @@
 export const DummyData = [
     {
+        id:"sofe06",
+        name:"Sofia Ferrer",
+        verified:true,
+        tweet:"Anumiooooo",
+        image:null,
+        prof:"https://instagram.fmar6-1.fna.fbcdn.net/v/t51.2885-19/280145521_101605822544873_3451231290370660898_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fmar6-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=ElKBrp7_GUQAX94-Haw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfCp5jdnzELazxo7nRcznCTGMVZisfHX77Ed-JFxCTNMag&oe=641315F2&_nc_sid=8fd12b",
+        like:"3M",
+        reply:"703k",
+        time:"58 sec",
+    },
+    {
+        id:"sofe06",
+        name:"Sofia Ferrer",
+        verified:true,
+        tweet:"Holitassssss",
+        image:null,
+        prof:"https://instagram.fmar6-1.fna.fbcdn.net/v/t51.2885-19/280145521_101605822544873_3451231290370660898_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fmar6-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=ElKBrp7_GUQAX94-Haw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfCp5jdnzELazxo7nRcznCTGMVZisfHX77Ed-JFxCTNMag&oe=641315F2&_nc_sid=8fd12b",
+        like:"3M",
+        reply:"1.3M",
+        time:"14 min",
+    },
+    {
+        id:"sofe06",
+        name:"Sofia Ferrer",
+        verified:true,
+        tweet:"Hola mundo, soy astetic",
+        image:"https://ih1.redbubble.net/image.606045933.8025/st,small,507x507-pad,600x600,f8f8f8.u4.jpg",
+        prof:"https://instagram.fmar6-1.fna.fbcdn.net/v/t51.2885-19/280145521_101605822544873_3451231290370660898_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fmar6-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=ElKBrp7_GUQAX94-Haw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfCp5jdnzELazxo7nRcznCTGMVZisfHX77Ed-JFxCTNMag&oe=641315F2&_nc_sid=8fd12b",
+        like:"15M",
+        reply:"1M",
+        time:"34 min",
+    },
+    {
         id:"elonmusk",
         name:"Elon Musk",
         verified:true,
@@ -57,6 +90,7 @@ export const DummyData = [
         like:"34",
         rt:"2",
         reply:"1",
+        time:"8d",
     },
     {
         id:"aniket736",
@@ -67,6 +101,8 @@ export const DummyData = [
         like:"255",
         rt:"12",
         reply:"10",
+        time:"11d",
+
     },
     {
         id:"thea_codes",
@@ -77,6 +113,8 @@ export const DummyData = [
         like:"127",
         rt:"3",
         reply:"12",
+        time:"14d",
+
     },
     
 ]

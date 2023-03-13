@@ -57,8 +57,8 @@ const SignUpScreen = () => {
                     }}
                 />
                 <CustomInput
-                    name="  "
-                    placeholder="Username"
+                    name="name"
+                    placeholder="Name"
                     control={control}
                     rules={{
                         required: 'Username is required',
