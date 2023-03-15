@@ -14,13 +14,9 @@ const defaultImage = "https://t3.ftcdn.net/jpg/00/64/67/52/360_F_64675209_7ve2XQ
 
 const UserProfileScreen = ({ route }) => {
 
-    const { id, name, verified, prof } = route.params
+    const { id, name, verified, prof, bio, followers, following } = route.params
 
     const filteredTweets = DummyData.filter(dat=>dat.id.includes(id))
-
-    const bio = "adf"
-    const followers = 123
-    const following = 32
 
     const nav = useNavigation()
 

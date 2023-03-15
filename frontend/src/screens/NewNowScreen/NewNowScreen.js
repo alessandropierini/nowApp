@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, ScrollView, TextInput, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, ScrollView, TextInput, Dimensions, TouchableOpacity, Alert } from 'react-native'
 import CustomInput from '../../components/customInput'
 import CustomButton from '../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
-import { useForm } from 'react-hook-form'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as ImagePicker from 'expo-image-picker';
+import { DummyUserData } from '../../mock/DummyUserData'
 
 const mainColor = "#2a3491"
 const ScreenWidth = Dimensions.get('window').width
@@ -16,12 +16,24 @@ const imageSelected = "https://media.istockphoto.com/id/1322277517/photo/wild-gr
 
 const NewNowScreen = () => {
 
+
     const nav = useNavigation()
 
     const [now, setNow] = useState(null)
     const onPostPressed = () => {
-        console.log(image)
-        console.log(now)
+        if (now == "") {
+            Alert.alert(
+                'Error',
+                'Empty Now!',
+                [
+                    { text: 'Close', style: 'close' },
+                ]
+            )
+        } else {
+            console.log({ DummyUserData, image, now })
+            nav.navigate('HomeScreen')
+
+        }
     }
     const [image, setImage] = useState(null)
     const pickImage = async () => {
@@ -32,7 +44,7 @@ const NewNowScreen = () => {
             aspect: [4, 3],
             quality: 0.5,
         })
-            setImage(result.assets[0].uri);
+        setImage(result.assets[0].uri);
     }
 
     function onAddImagePressed() {

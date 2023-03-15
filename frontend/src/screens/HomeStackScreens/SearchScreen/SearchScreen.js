@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import SearchProfCard from '../../../components/SearchProfCard'
 import { DummyData } from '../../../mock/DummyData'
+import { DummyUsersData } from '../../../mock/DummyUsersData'
+import { useNavigation } from '@react-navigation/native'
 
 const ScreenWidth = Dimensions.get('window').width
 
 const SearchScreen = ({ navigation }) => {
 
+    const nav = useNavigation()
     const [user, setUser] = useState([])
     const data = DummyData
 
@@ -39,7 +42,7 @@ const SearchScreen = ({ navigation }) => {
         <View style={styles.container}>
             <ScrollView>
                 {
-                    user?.map(dat=><SearchProfCard key={dat.id} prof={dat.prof} id={dat.id} name={dat.name} verified = {dat.verified} />)
+                    user?.map(dat=><SearchProfCard key={dat.id} prof={dat.prof} id={dat.id} name={dat.name} verified = {dat.verified} nav={nav} bio={dat.bio} followers={dat.followers} following={dat.following} />)
                 }
             </ScrollView>
         </View>

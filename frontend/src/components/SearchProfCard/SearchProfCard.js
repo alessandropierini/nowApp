@@ -4,7 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const mainColor = "#2a3491"
 
-const SearchProfCard = ({id, name, verified, prof}) => {
+const SearchProfCard = ({id, name, verified, prof, nav, bio, followers, following}) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftCont}>
@@ -16,7 +16,7 @@ const SearchProfCard = ({id, name, verified, prof}) => {
       <View style={styles.rightCont}>
         <View style={styles.topCont}>
           <View style={styles.nameCont}>
-            <Text style={styles.nameText}>{name}</Text>
+            <Text style={styles.nameText} onPress={() => { nav.navigate("UserProfileScreen", { id, name, verified, prof, bio, followers, following }) }}>{name}</Text>
             {verified&&<MaterialIcons name="verified" color={mainColor} size={20} />}
             <Text style={styles.idText}>@{id}</Text>
           </View>
