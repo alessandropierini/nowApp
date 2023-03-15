@@ -9,7 +9,7 @@ import { DummyData } from '../../../mock/DummyData'
 
 const mainColor = "#2a3491"
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 
     const { height } = useWindowDimensions()
     const nav = useNavigation()
@@ -30,9 +30,8 @@ const HomeScreen = () => {
                         time={dat.time}
                         like={dat.like}
                         reply={dat.reply}
+                        nav={nav}
                     />)}
-
-                <CustomButton text="User profile" onPress={() => nav.push("UserProfileScreen")} />
             </View>
         </ScrollView>
     )

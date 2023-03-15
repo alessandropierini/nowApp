@@ -9,6 +9,7 @@ import UserProfileScreen from '../screens/HomeStackScreens/UserProfileScreen';
 import UserProfileFollowersScreen from '../screens/HomeStackScreens/UserProfileFollowersScreen'
 import UserProfileFollowingScreen from '../screens/HomeStackScreens/UserProfileFollowingScreen'
 import SearchScreen from '../screens/HomeStackScreens/SearchScreen/SearchScreen';
+import CommentScreen from '../screens/HomeStackScreens/CommentScreen';
 
 const mainColor = "#2a3491"
 const tabsColor = 'white'
@@ -45,11 +46,11 @@ const HomeStack = () => {
                     <Ionicons style={{ color: tabsColor, padding: 15 }} name="search" size={27}  onPress={() => {nav.navigate('SearchScreen')}}/>
                 )
             }} />
-            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
-            <Stack.Screen name="UserProfileFollowersScreen" component={UserProfileFollowersScreen} />
-            <Stack.Screen name="UserProfileFollowingScreen" component={UserProfileFollowingScreen} />
+            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} options = {{title: 'User Profile'}}/>
+            <Stack.Screen name="UserProfileFollowersScreen" component={UserProfileFollowersScreen} options={{title: 'Followers'}} />
+            <Stack.Screen name="UserProfileFollowingScreen" component={UserProfileFollowingScreen} options={{title: 'Following'}}/>
             <Stack.Screen name="SearchScreen" component={SearchScreen} /> 
-
+            <Stack.Screen name="CommentScreen" component={CommentScreen} options={{title: 'Comments'}} /> 
         </Stack.Navigator >
     )
 }
