@@ -20,7 +20,7 @@ const NewNowScreen = () => {
 
     const nav = useNavigation()
 
-    const [now, setNow] = useState(null)
+    const [now, setNow] = useState("")
     const onPostPressed = () => {
         if (!now.trim().length) {
             Alert.alert(
@@ -46,7 +46,7 @@ const NewNowScreen = () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
-            aspect: [4, 3],
+            aspect: [16, 9],
             quality: 0.5,
         })
         setImage(result.assets[0].uri);
@@ -72,6 +72,7 @@ const NewNowScreen = () => {
                         autoCorrect
                         autoCapitalize='sentences'
                         numberOfLines={5}
+                        blurOnSubmit={true}
                         autoFocus={true}
                         onChangeText={newText => setNow(newText)}
                     />
@@ -91,7 +92,7 @@ const NewNowScreen = () => {
                             flex: 1,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            
+
                         }}>
                             <Image
                                 source={{
@@ -111,7 +112,7 @@ const NewNowScreen = () => {
                                 <MaterialCommunityIcons name="close" size={30} color={'white'} style={{
                                     backgroundColor: 'rgba(100, 100, 100, .6)',
                                     borderRadius: 30,
-                                }}/>
+                                }} />
                             </TouchableOpacity>
                         </View>
                         :

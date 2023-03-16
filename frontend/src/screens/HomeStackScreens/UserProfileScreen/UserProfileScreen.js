@@ -86,7 +86,11 @@ const UserProfileScreen = ({ route }) => {
                             time={dat.time}
                             like={dat.like}
                             reply={dat.reply}
-                        />)}
+                            nav={nav}
+                            bio={dat.bio}
+                            followers={dat.followers}
+                            following={dat.following}
+                            />)}
                 </View>
         </ScrollView>
     )

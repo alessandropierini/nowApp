@@ -11,7 +11,7 @@ export const DummyData = [
         following: 1819,
         like: 3051,
         reply: 100,
-        time: "2023-03-16T01:24:58.656Z",
+        time: "2023-03-16T19:12:54.899Z",
     },
     {
         id: "sofe06",

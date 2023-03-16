@@ -9,7 +9,7 @@ const SearchProfCard = ({id, name, verified, prof, nav, bio, followers, followin
     <View style={styles.container}>
       <View style={styles.leftCont}>
         <Image
-          style={{ height: 30, width: 30, borderRadius: 30 }}
+          style={{ height: 30, width: 30, borderRadius: 30, margin: 3 }}
           source={{ uri: prof }}
         />
       </View>
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     flexDirection: 'column',
     justifyContent: 'center',
+    marginTop: 5
   },
   nameCont: {
     flexDirection: 'row',

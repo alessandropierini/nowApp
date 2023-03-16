@@ -3,12 +3,15 @@ import React, { useState } from 'react'
 import NowCard from '../../../components/NowCard'
 import Feather from 'react-native-vector-icons/Feather'
 import CustomButton from '../../../components/customButton/customButton'
+import CommentCard from '../../../components/CommentCard'
 import { DummyUserData } from '../../../mock/DummyUserData'
+import { DummyCommentData } from '../../../mock/DummyCommentData'
 import moment from 'moment'
 
 const ScreenWidth = Dimensions.get('window').width
 const ScreenHeight = Dimensions.get('window').height
 const mainColor = "#2a3491"
+const CommentData = DummyCommentData
 
 const CommentScreen = ({ route }) => {
 
@@ -20,7 +23,7 @@ const CommentScreen = ({ route }) => {
     if (!newComment.trim().length) {
       Alert.alert(
         'Error',
-        'Empty Now!',
+        'Empty Reply!',
         [
           { text: 'Close', style: 'close' },
         ]
@@ -71,14 +74,27 @@ const CommentScreen = ({ route }) => {
             style={{
               position: 'absolute',
               alignSelf: 'flex-end',
-              paddingTop: 37,
-              paddingRight: 15,
+              paddingTop: 45,
+              paddingRight: 20,
 
             }}>
             <Feather name="send" size={30} color={mainColor} style={{
 
             }} />
           </TouchableOpacity>
+        </View>
+        <View>
+          {CommentData.map(dat=>
+            <CommentCard 
+              tweet = {dat.tweet}
+              id = {dat.id}
+              name = {dat.name}
+              verified = {dat.verified}
+              prof = {dat.prof}
+              comment = {dat.comment}
+              time = {dat.time}
+              like = {dat.like}
+            />)}
         </View>
       </View>
     </ScrollView>
@@ -93,7 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingLeft: 25,
     textAlignVertical: 'top',
-    height: '100%',
+    height: 120,
     width: ScreenWidth,
     marginBottom: 12,
     color: 'black',

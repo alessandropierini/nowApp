@@ -32,7 +32,7 @@ const SearchScreen = ({ navigation }) => {
 
         const searchUser = (e) => {
             if(e){
-                setUser(data.filter(dat=>dat.id.includes(e)))
+                setUser(data.filter(dat=>dat.id.toLowerCase().includes(e.toLowerCase())))
             } else {
                 setUser([])
             }
