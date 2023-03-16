@@ -7,6 +7,7 @@ import CustomButton from '../../../components/customButton/customButton'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { DummyData } from '../../../mock/DummyData'
 import NowCard from '../../../components/NowCard'
+import { abbreviateNumber } from 'js-abbreviation-number'
 
 const mainColor = "#2a3491"
 const defaultImage = "https://t3.ftcdn.net/jpg/00/64/67/52/360_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg"
@@ -20,8 +21,13 @@ const UserProfileScreen = ({ route }) => {
 
     const nav = useNavigation()
 
+    const [followed, setFollowed] = useState(false)
     const onFollowPressed = () => {
-        console.warn("Followed")
+        if(followed == false) { 
+            setFollowed(true)
+        } else {
+            setFollowed(false)
+        }
     }
 
     return (
@@ -53,16 +59,17 @@ const UserProfileScreen = ({ route }) => {
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 15, alignItems: 'center', justifyContent: 'space-evenly', marginHorizontal: -20 }}>
-                    <CustomButton text="Edit Profile" onPress={() => { nav.push('EditProfile') }} type="FOLLOW" />
+                    {followed ? <CustomButton text="Unfollowed" onPress={() => { console.warn('followed') }} type="FOLLOW" />
+                    : <CustomButton text="Follow" onPress={() => { console.warn('followed') }} type="FOLLOW" />}
 
                     <View style={styles.followInfo} >
                         <Text onPress={() => { nav.push('ProfileFollowingScreen') }} style={{ fontWeight: 'bold', color: 'white' }}>Following</Text>
-                        <Text style={{ color: 'white' }}>{following}</Text>
+                        <Text style={{ color: 'white' }}>{abbreviateNumber(following,1)}</Text>
                     </View>
 
                     <View style={styles.followInfo}>
                         <Text onPress={() => { nav.push('ProfileFollowersScreen') }} style={{ fontWeight: 'bold', color: 'white' }}>Followers</Text>
-                        <Text style={{ color: 'white' }}>{followers}</Text>
+                        <Text style={{ color: 'white' }}>{abbreviateNumber(followers,1)}</Text>
                     </View>
                 </View>
             </View>

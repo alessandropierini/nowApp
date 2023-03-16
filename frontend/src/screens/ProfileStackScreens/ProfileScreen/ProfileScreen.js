@@ -7,6 +7,7 @@ import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { abbreviateNumber } from 'js-abbreviation-number'
 
 import NowCard from '../../../components/NowCard/NowCard'
 import { DummyData } from '../../../mock/DummyData'
@@ -51,12 +52,12 @@ const ProfileScreen = () => {
 
                             <View style={styles.followInfo} >
                                 <Text onPress={() => { nav.push('ProfileFollowingScreen') }} style={{ fontWeight: 'bold', color: 'white' }}>Following</Text>
-                                <Text style={{ color: 'white' }}>{dat.following}</Text>
+                                <Text style={{ color: 'white' }}>{abbreviateNumber(dat.following, 1)}</Text>
                             </View>
 
                             <View style={styles.followInfo}>
                                 <Text onPress={() => { nav.push('ProfileFollowersScreen') }} style={{ fontWeight: 'bold', color: 'white' }}>Followers</Text>
-                                <Text style={{ color: 'white' }}>{dat.followers}</Text>
+                                <Text style={{ color: 'white' }}>{abbreviateNumber(dat.followers, 1)}</Text>
                             </View>
                         </View>
                     </View>)}

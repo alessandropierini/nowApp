@@ -7,6 +7,7 @@ import { ScreenContainer } from 'react-native-screens'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as ImagePicker from 'expo-image-picker';
 import { DummyUserData } from '../../mock/DummyUserData'
+import moment from 'moment'
 
 const mainColor = "#2a3491"
 const ScreenWidth = Dimensions.get('window').width
@@ -21,7 +22,7 @@ const NewNowScreen = () => {
 
     const [now, setNow] = useState(null)
     const onPostPressed = () => {
-        if (now == "") {
+        if (!now.trim().length) {
             Alert.alert(
                 'Error',
                 'Empty Now!',
@@ -30,8 +31,12 @@ const NewNowScreen = () => {
                 ]
             )
         } else {
-            console.log({ DummyUserData, image, now })
-            nav.navigate('HomeScreen')
+            var trimmedNow = now.trim()
+            var instant = moment()
+            console.log({ DummyUserData, image, trimmedNow, instant })
+
+
+            // nav.navigate('HomeScreen')
 
         }
     }
@@ -69,7 +74,6 @@ const NewNowScreen = () => {
                         numberOfLines={5}
                         autoFocus={true}
                         onChangeText={newText => setNow(newText)}
-
                     />
                 </View>
 
@@ -86,7 +90,8 @@ const NewNowScreen = () => {
                             marginBottom: 15,
                             flex: 1,
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            
                         }}>
                             <Image
                                 source={{
@@ -100,9 +105,13 @@ const NewNowScreen = () => {
                                     position: 'absolute',
                                     alignSelf: 'flex-end',
                                     paddingBottom: 150,
-                                    paddingRight: 10
+                                    paddingRight: 10,
+
                                 }}>
-                                <MaterialCommunityIcons name="close" size={30} color={'white'} />
+                                <MaterialCommunityIcons name="close" size={30} color={'white'} style={{
+                                    backgroundColor: 'rgba(100, 100, 100, .6)',
+                                    borderRadius: 30,
+                                }}/>
                             </TouchableOpacity>
                         </View>
                         :

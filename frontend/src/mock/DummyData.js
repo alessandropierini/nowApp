@@ -6,12 +6,12 @@ export const DummyData = [
         tweet: "Anumiooooo",
         image: null,
         prof: "https://instagram.fmar6-1.fna.fbcdn.net/v/t51.2885-19/280145521_101605822544873_3451231290370660898_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fmar6-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=ElKBrp7_GUQAX94-Haw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfCp5jdnzELazxo7nRcznCTGMVZisfHX77Ed-JFxCTNMag&oe=641315F2&_nc_sid=8fd12b",
-        followers: 999,
+        followers: 91749727,
         bio: "Astetic",
-        following: 1,
-        like: 300,
+        following: 1819,
+        like: 3051,
         reply: 100,
-        time: "58 sec",
+        time: "2023-03-16T01:24:58.656Z",
     },
     {
         id: "sofe06",
@@ -25,7 +25,7 @@ export const DummyData = [
         following: 1,
         like: 234,
         reply: 623,
-        time: "14 min",
+        time: "2023-03-16T01:15:02.122Z",
     },
     {
         id: "sofe06",
@@ -39,7 +39,7 @@ export const DummyData = [
         bio: "Astetic",
         like: 4563,
         reply: 567,
-        time: "34 min",
+        time: "2023-03-16T01:07:02.122Z",
     },
     {
         id: "elonmusk",
@@ -54,7 +54,7 @@ export const DummyData = [
         like: 232,
         rt: "25.6K",
         reply: 25,
-        time: "2h",
+        time: "2023-03-16T01:02:02.122Z",
     },
     {
         id: "ykdojo",
@@ -69,7 +69,7 @@ export const DummyData = [
         like: 20,
         rt: "120",
         reply: 10,
-        time: "5h",
+        time: "2023-03-14T01:20:02.122Z",
     },
     {
         id: "MrRichee_",
@@ -84,7 +84,7 @@ export const DummyData = [
         like: 1,
         rt: "67.9K",
         reply: 20,
-        time: "2d",
+        time: "2023-03-14T01:14:02.122Z",
     },
     {
         id: "Cobratate",
@@ -100,7 +100,7 @@ export const DummyData = [
         like: 2,
         rt: "121.4K",
         reply: 20,
-        time: "6d",
+        time: "2023-03-10T01:20:02.122Z",
     },
     {
         id: "Jazzycodes",
@@ -111,7 +111,7 @@ export const DummyData = [
         like: 34,
         rt: "2",
         reply: 1,
-        time: "8d",
+        time: "2023-03-05T01:20:02.122Z",
     },
     {
         id: "aniket736",
@@ -125,7 +125,7 @@ export const DummyData = [
         like: 255,
         rt: "12",
         reply: 10,
-        time: "11d",
+        time: "2023-01-14T01:20:02.122Z",
 
     },
     {
@@ -140,7 +140,7 @@ export const DummyData = [
         like: 127,
         rt: "3",
         reply: 12,
-        time: "14d",
+        time: "2022-03-14T01:20:02.122Z",
 
     },
 

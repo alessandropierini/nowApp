@@ -53,7 +53,7 @@ const SignUpScreen = () => {
                     rules={{
                         required: 'Username is required',
                         minLength: { value: 7, message: 'Username must be at least 7 characters long' },
-                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
+                        maxLength: { value: 13, message: 'Username must be less than 13 characters long' }
                     }}
                 />
                 <CustomInput
@@ -62,8 +62,8 @@ const SignUpScreen = () => {
                     control={control}
                     rules={{
                         required: 'Username is required',
-                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
-                        maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
+                        minLength: { value: 3, message: 'Name must be at least 7 characters long' },
+                        maxLength: { value: 25, message: 'Name must be less than 25 characters long' }
                     }}
                 />
                 <CustomInput
@@ -82,7 +82,7 @@ const SignUpScreen = () => {
                     secureTextEntry
                     rules={{
                         required: 'Password is required',
-                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        minLength: { value: 7, message: 'Password must be at least 7 characters long' },
                         maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
                     }}
                 />
@@ -93,7 +93,7 @@ const SignUpScreen = () => {
                     secureTextEntry
                     rules={{
                         required: 'Please confirm your password',
-                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
+                        minLength: { value: 7, message: 'Password must be at least 7 characters long' },
                         maxLength: { value: 13, message: 'Password must be less than 13 characters long' },
                         validate: value =>
                             value === pwd || 'Passwords do not match'
