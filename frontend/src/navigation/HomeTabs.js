@@ -12,6 +12,9 @@ const Tabs = createBottomTabNavigator()
 const mainColor = "#2a3491"
 const tabsColor = 'white'
 
+const logoOutline = "../../assets/NowLogoIconBlancoV2-01.png"
+const logoFilled = "../../assets/NowLogoIconBlancoFilledV2-01.png"
+
 const HomeTabs = () => {
 
     return (
@@ -25,17 +28,27 @@ const HomeTabs = () => {
             <Tabs.Screen name="Home" component={HomeStack} options={{
                 title: 'Now',
                 headerShown: false,
-                tabBarIcon: () => (
-                    <Ionicons style={{ color: tabsColor }} name="home" size={24} />
+                tabBarIcon: ({ focused }) => (
+                    <Ionicons
+                        style={{ color: tabsColor }}
+                        name={focused ? "home" : "home-outline"}
+                        size={24} />
                 ),
             }} />
 
             <Tabs.Screen name="New Now" component={NewNowScreen} options={{
-                tabBarIcon: () => (
-                    <Image style={{ width: 35, height: 35 }} source={require("../../assets/NowLogoIconBlancoV2-01.png")} resizeMode="contain" />
+                tabBarIcon: ({ focused }) => (
+                    <Image
+                        style={{ width: 35, height: 35 }}
+                        source={focused ? require("../../assets/NowLogoIconBlancoFilledV2-01.png") : require("../../assets/NowLogoIconBlancoV2-01.png")}
+                        resizeMode="contain"
+                    />
                 ),
                 headerTitle: () => (
-                    <Image style={{ width: 40 }} source={require("../../assets/NowLogoIconBlancoV2-01.png")} resizeMode="contain" />
+                    <Image
+                        style={{ width: 40 }}
+                        source={require("../../assets/NowLogoIconBlancoV2-01.png")}
+                        resizeMode="contain" />
                 ),
                 title: 'New Now',
                 headerStyle: {
@@ -49,8 +62,11 @@ const HomeTabs = () => {
                 headerTitle: () => (
                     <Text style={styles.title}>Sofi</Text>
                 ),
-                tabBarIcon: () => (
-                    <Ionicons style={{ color: tabsColor }} name="person" size={24} />
+                tabBarIcon: ({ focused }) => (
+                    <Ionicons
+                        style={{ color: tabsColor }}
+                        name={focused ? "person" : "person-outline"}
+                        size={24} />
                 ),
                 headerStyle: {
                     backgroundColor: mainColor,

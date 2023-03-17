@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, Image, StyleSheet, useWindowDimensions, ScrollView, Pressable, Text } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, Image, StyleSheet, useWindowDimensions, ScrollView, Pressable, Text, TouchableOpacity, Animated } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Logo from '../../../../assets/NowLogoIconBlancoV2-01.png'
 import CustomInput from '../../../components/customInput'
 import CustomButton from '../../../components/customButton'
@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { abbreviateNumber } from 'js-abbreviation-number'
+import { SwipeListView } from 'react-native-swipe-list-view'
 
 import NowCard from '../../../components/NowCard/NowCard'
 import { DummyData } from '../../../mock/DummyData'
@@ -22,12 +23,173 @@ const ProfileScreen = () => {
 
     const nav = useNavigation()
     const onEditPressed = () => {
-        nav.push('EditProfile', {userData})
+        nav.push('EditProfile', { userData })
+    }
+
+    const [listData, setListData] = useState(
+        filteredTweets.map((filteredTweetsItem, index) => ({
+            key: `${index}`,
+            tweet: filteredTweetsItem.tweet,
+            prof: filteredTweetsItem.prof,
+            id: filteredTweetsItem.id,
+            name: filteredTweetsItem.name,
+            verified: filteredTweetsItem.verified,
+            image: filteredTweetsItem.image,
+            time: filteredTweetsItem.time,
+            like: filteredTweetsItem.like,
+            reply: filteredTweetsItem.reply
+        }))
+    )
+
+    const closeRow = (rowMap, rowKey) => {
+        if (rowMap[rowKey]) {
+            rowMap[rowKey].closeRow()
+        }
+    }
+
+    const deleteRow = (rowMap, rowKey) => {
+        closeRow(rowMap, rowKey)
+        const newData = [...listData]
+        const prevIndex = listData.findIndex(item => item.key == rowKey)
+        newData.splice(prevIndex, 1)
+        setListData(newData)
+    }
+
+    const onRowDidOpen = rowKey => {
+        console.log('This row opened', rowKey)
+    }
+    const onLeftActionStatusChange = rowKey => {
+        console.log('onLeftActionStatusChange', rowKey)
+    }
+    const onRightActionStatusChange = rowKey => {
+        console.log('onRightActionStatusChange', rowKey)
+    }
+    const onRightAction = rowKey => {
+        console.log('onRightAction', rowKey)
+    }
+    const onLeftAction = rowKey => {
+        console.log('onLeftAction', rowKey)
+    }
+
+    const VisibleItem = props => {
+        const { data, rowHeightAnimatedValue, removeRow, leftActionState, rightActionState } = props
+
+        if(rightActionState) {
+            Animated.timing(rowHeightAnimatedValue, {
+                toValue: 0,
+                duration: 1,
+            }).start(()=> {
+                removeRow()
+            })
+        }
+
+        return (
+            <Animated.View style={{ backgroundColor: 'white', borderRadius: 0 }}>
+                <NowCard
+                    key={data.item.id}
+                    prof={data.item.prof}
+                    id={data.item.id}
+                    name={data.item.name}
+                    verified={data.item.verified}
+                    image={data.item.image}
+                    tweet={data.item.tweet}
+                    time={data.item.time}
+                    like={data.item.like}
+                    reply={data.item.reply}
+                />
+            </Animated.View>
+        )
+    }
+
+    const renderItem = (data, rowMap) => {
+        const rowHeightAnimatedValue = new Animated.Value(60)
+        return (
+            <VisibleItem data={data} rowHeightAnimatedValue={rowHeightAnimatedValue} removeRow={() => deleteRow(rowMap, data.item.key)} />
+        )
+    }
+
+    const HiddenItemWithActions = props => {
+        const { swipeAnimatedValue, leftActionActivated, rightActionActivated, rowActionAnimatedValue, rowHeightAnimatedValue, onClose, onDelete } = props
+
+        if (rightActionActivated) {
+            Animated.spring(rowActionAnimatedValue, {
+                toValue: 500
+            }).start()
+        }
+
+        return (
+            <Animated.View style={[styles.rowBack, {height: rowHeightAnimatedValue}]}>
+                <Text>Left</Text>
+                <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnLeft, {height: 80}]} onPress={onClose}>
+                    <Animated.View style={[styles.trash, {
+                        transform: [
+                            {
+                                scale: swipeAnimatedValue.interpolate({
+                                    inputRange: [-90, -45],
+                                    outputRange: [1, 0],
+                                    extrapolate: 'clamp',
+                                }),
+                            },
+                        ],
+                    },]}>
+                        <Ionicons name="close" size={25} color={'white'} />
+                    </Animated.View>
+                </TouchableOpacity>
+                <Animated.View style={[styles.backRightBtn, styles.backRightBtnRight, { flex: 1, width: rowActionAnimatedValue, height: 80}]}>
+                    <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={onDelete}>
+                        <Animated.View style={[styles.trash, {
+                            transform: [
+                                {
+                                    scale: swipeAnimatedValue.interpolate({
+                                        inputRange: [-90, -45],
+                                        outputRange: [1, 0],
+                                        extrapolate: 'clamp',
+                                    }),
+                                },
+                            ],
+                        },]}>
+                            <Ionicons name="md-trash" size={25} color={'white'} />
+                        </Animated.View>
+                    </TouchableOpacity>
+                </Animated.View>
+            </Animated.View>
+        )
+    }
+
+    const renderHiddenItem = (data, rowMap) => {
+        const rowActionAnimatedValue = new Animated.Value(75)
+        const rowHeightAnimatedValue = new Animated.Value(60)
+        return (
+            <HiddenItemWithActions
+                data={data}
+                rowMap={rowMap}
+                onClose={() => closeRow(rowMap, data.item.key)}
+                onDelete={() => deleteRow(rowMap, data.item.key)}
+                rowActionAnimatedValue={rowActionAnimatedValue}
+                rowHeightAnimatedValue={rowHeightAnimatedValue}
+            />
+        )
     }
 
     return (
         <ScreenContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
+                <SwipeListView
+                    data={listData}
+                    renderItem={renderItem}
+                    renderHiddenItem={renderHiddenItem}
+                    rightOpenValue={-150}
+                    disableRightSwipe
+                    onRowDidOpen={onRowDidOpen}
+                    leftActivationValue={100}
+                    rightActivationValue={-200}
+                    leftActionValue={0}
+                    rightActionValue={-500}
+                    onLeftAction={onLeftAction}
+                    onRightAction={onRightAction}
+                    onLeftActionStatusChange={onLeftActionStatusChange}
+                    onRightActionStatusChange={onRightActionStatusChange}
+                />
                 {userData.map(dat =>
                     <View style={styles.userInfoSection}>
                         <View style={styles.container}>
@@ -82,6 +244,9 @@ const ProfileScreen = () => {
             </ScrollView>
         </ScreenContainer>
     )
+
+        //
+
 }
 
 const styles = StyleSheet.create({
@@ -142,6 +307,41 @@ const styles = StyleSheet.create({
     idText: {
         marginLeft: 5,
         color: 'white',
+    },
+    backRightBtn: {
+        alignItems: 'flex-end',
+        bottom: 0,
+        justifyContent: 'center',
+        position: 'absolute',
+        top: 0,
+        width: 75,
+        paddingRight: 17,
+    },
+    backRightBtnLeft: {
+        backgroundColor: mainColor,
+        right: 75,
+    },
+    backRightBtnRight: {
+        backgroundColor: 'red',
+        right: 0,
+        borderTopRightRadius: 5,
+        borderBottomRightRadius: 5,
+    },
+    rowBack: {
+        alignItems: 'center',
+        backgroundColor: '#DDD',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: 15,
+        margin: 5,
+        marginBottom: 15,
+        borderRadius: 5,
+    },
+    trash: {
+        height: 25,
+        width: 25,
+        marginRight: 7,
     },
 })
 
