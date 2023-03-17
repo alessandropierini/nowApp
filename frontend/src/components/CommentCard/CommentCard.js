@@ -39,7 +39,7 @@ const CommentCard = ({ id, name, like, time, verified, tweet, prof, comment }) =
             <View style={styles.rightCont}>
                 <View style={styles.topCont}>
                     <View style={styles.nameCont}>
-                        <Text style={styles.nameText} onPress={() => { nav.navigate("UserProfileScreen", { id, name, verified, prof, bio, following, followers }) }}>{name}</Text>
+                        <Text style={styles.nameText} >{name}</Text>
                         {verified && <MaterialIcons name="verified" color={mainColor} size={20} />}
                         <Text style={styles.idText}>{moment(time).fromNow()}</Text>
                     </View>

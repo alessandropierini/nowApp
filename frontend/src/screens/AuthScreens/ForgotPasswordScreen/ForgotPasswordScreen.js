@@ -34,7 +34,19 @@ const ForgotPasswordScreen = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
                 <Text style={styles.title}>Reset your password Now!</Text>
-
+                <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 20, paddingTop: 10 }}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
+                        Please, introduce your username and the email you registered with to reset your password.
+                    </Text>
+                </View>
+                <CustomInput
+                    name="username"
+                    placeholder="username"
+                    control={control}
+                    rules={{
+                        required: 'Username is required',
+                    }}
+                />
                 <CustomInput
                     name="email"
                     placeholder="email"
@@ -68,10 +80,12 @@ const ForgotPasswordScreen = () => {
                             value === pwd || 'Passwords do not match'
                     }}
                 />
-
-                <CustomButton text="Reset Password Now!" onPress={handleSubmit(onResetPressed)} />
-
-                <CustomButton text="Go back to Sign in" onPress={onBackPressed} type="TERTIARY" />
+                <View style={{paddingTop: 25}}>
+                    <CustomButton text="Reset Password Now!" onPress={handleSubmit(onResetPressed)} />
+                </View>
+                <View style={{paddingTop: 50}}>
+                    <CustomButton text="Go back to Sign in" onPress={onBackPressed} type="TERTIARY" />
+                </View>
             </View>
         </ScrollView>
     )

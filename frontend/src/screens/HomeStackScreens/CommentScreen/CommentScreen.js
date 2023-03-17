@@ -7,6 +7,7 @@ import CommentCard from '../../../components/CommentCard'
 import { DummyUserData } from '../../../mock/DummyUserData'
 import { DummyCommentData } from '../../../mock/DummyCommentData'
 import moment from 'moment'
+import { useNavigation } from '@react-navigation/native'
 
 const ScreenWidth = Dimensions.get('window').width
 const ScreenHeight = Dimensions.get('window').height
@@ -15,7 +16,10 @@ const CommentData = DummyCommentData
 
 const CommentScreen = ({ route }) => {
 
+  const nav = useNavigation()
   const { key, id, name, verified, tweet, image, prof, time, like, reply } = route.params
+  const filteredComments = CommentData.filter(dat=>dat.tweet.includes(tweet))
+
   const comment = true
 
   const [newComment, setNewComment] = useState("")
@@ -32,10 +36,6 @@ const CommentScreen = ({ route }) => {
       var trimmedComment = newComment.trim()
       var instant = moment()
       console.log({ DummyUserData, trimmedComment, instant })
-
-
-      // nav.navigate('HomeScreen')
-
     }
   }
 
@@ -84,7 +84,7 @@ const CommentScreen = ({ route }) => {
           </TouchableOpacity>
         </View>
         <View>
-          {CommentData.map(dat=>
+          {filteredComments.map(dat=>
             <CommentCard 
               tweet = {dat.tweet}
               id = {dat.id}

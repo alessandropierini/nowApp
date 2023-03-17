@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native'
 import Logo from '../../../../assets/NowLogoIconV2-01.png'
 import CustomInput from '../../../components/customInput'
 import CustomButton from '../../../components/customButton'
@@ -7,19 +7,29 @@ import { useNavigation } from '@react-navigation/native'
 import { ScreenContainer } from 'react-native-screens'
 import { useForm } from 'react-hook-form'
 import { DummyUserData } from '../../../mock/DummyUserData'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import * as ImagePicker from 'expo-image-picker';
 
-const mainColor = "#2a3491"
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 const data = DummyUserData
+const mainColor = "#2a3491"
 
-const EditProfileScreen = () => {
+
+const EditProfileScreen = ({ route }) => {
+
+    // const { key, id, name, verified, tweet, image, prof time, like, reply } = route.params
+    const prof = "https://instagram.fmar6-1.fna.fbcdn.net/v/t51.2885-19/280145521_101605822544873_3451231290370660898_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fmar6-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=ElKBrp7_GUQAX94-Haw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfCp5jdnzELazxo7nRcznCTGMVZisfHX77Ed-JFxCTNMag&oe=641315F2&_nc_sid=8fd12b"
+    const imageSize = 120
 
     const nav = useNavigation()
 
     const { control, handleSubmit, formState: { errors }, watch } = useForm({
-
         defaultValues: {
-            username: ''
+            username: 'sofe06',
+            name: 'Sofia Ferrer',
+            email: 'user@gmail.com',
+            password: 'pass',
+            confirmpassowrd: 'pass'
         }
     })
     const pwd = watch('password')
@@ -30,11 +40,32 @@ const EditProfileScreen = () => {
             console.warn('edited')
         }
     }
+    const [image, setImage] = useState(prof)
+    const onImagePressed = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 0.5,
+        })
+        setImage(result.assets[0].uri);
+
+    }
 
     return (
         <ScreenContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
+                    <View>
+                        <TouchableOpacity style={{ position: 'relative' }} onPress={onImagePressed} >
+                            <Image
+                                style={{ height: imageSize, width: imageSize, borderRadius: imageSize, borderColor: mainColor, borderWidth: 5, opacity: 1, marginBottom: 18, }}
+                                source={{ uri: image }}
+                            />
+                            <MaterialCommunityIcons name="image" size={40} color={mainColor} style={{ position: 'absolute', paddingLeft: 80, paddingTop: 84 }} />
+                        </TouchableOpacity>
+                    </View>
                     <CustomInput
                         name="username"
                         placeholder="Username"
@@ -88,8 +119,9 @@ const EditProfileScreen = () => {
                                 value === pwd || 'Passwords do not match'
                         }}
                     />
-
-                    <CustomButton text="Update Now!" onPress={handleSubmit(onUpdatePressed)} />
+                    <View style={{ marginTop: 10, width: 250, alignItems: 'center' }}>
+                        <CustomButton text="Update Now!" onPress={handleSubmit(onUpdatePressed)} />
+                    </View>
                 </View>
             </ScrollView>
         </ScreenContainer>

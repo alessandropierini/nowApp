@@ -16,11 +16,14 @@ import { DummyUserData } from '../../../mock/DummyUserData'
 const mainColor = "#2a3491"
 const userData = DummyUserData
 
-const filteredTweets = DummyData.filter(dat=>dat.id.includes('sofe'))
+const filteredTweets = DummyData.filter(dat => dat.id.includes('sofe'))
 
 const ProfileScreen = () => {
 
     const nav = useNavigation()
+    const onEditPressed = () => {
+        nav.push('EditProfile', {userData})
+    }
 
     return (
         <ScreenContainer>
@@ -48,7 +51,7 @@ const ProfileScreen = () => {
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 15, alignItems: 'center', justifyContent: 'space-evenly', marginHorizontal: -20 }}>
-                            <CustomButton text="Edit Profile" onPress={() => { nav.push('EditProfile') }} type="FOLLOW" />
+                            <CustomButton text="Edit Profile" onPress={onEditPressed} type="FOLLOW" />
 
                             <View style={styles.followInfo} >
                                 <Text onPress={() => { nav.push('ProfileFollowingScreen') }} style={{ fontWeight: 'bold', color: 'white' }}>Following</Text>
@@ -61,7 +64,7 @@ const ProfileScreen = () => {
                             </View>
                         </View>
                     </View>)}
-                <View>                    
+                <View>
                     {filteredTweets.map(dat =>
                         <NowCard
                             key={dat.id}
