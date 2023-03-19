@@ -5,6 +5,7 @@ import SignInScreen from '../screens/AuthScreens/SignInScreen'
 import SignUpScreen from '../screens/AuthScreens/SignUpScreen'
 import ForgotPasswordScreen from '../screens/AuthScreens/ForgotPasswordScreen'
 import WelcomeScreen from '../screens/AuthScreens/WelcomeScreen';
+import TermsScreen from '../screens/AuthScreens/TermsScreen';
 
 const Stack = createStackNavigator()
 
@@ -15,6 +16,7 @@ const AuthStack = () => {
             <Stack.Screen name="SignIn" component={SignInScreen} options={{ title: "" }} />
             <Stack.Screen name="SignUp" component={SignUpScreen} options={{ title: "" }} />
             <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ title: "" }} />
+            <Stack.Screen name="Terms" component={TermsScreen} options={{ title: "" }} />
         </Stack.Navigator>
     )
 }

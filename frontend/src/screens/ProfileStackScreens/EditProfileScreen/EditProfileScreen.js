@@ -29,7 +29,7 @@ const EditProfileScreen = ({ route }) => {
             name: 'Sofia Ferrer',
             email: 'user@gmail.com',
             password: 'pass',
-            confirmpassowrd: 'pass'
+            passwordRepeat: 'pass'
         }
     })
     const pwd = watch('password')
@@ -54,18 +54,18 @@ const EditProfileScreen = ({ route }) => {
     }
 
     return (
-        <ScreenContainer>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.root}>
-                    <View>
-                        <TouchableOpacity style={{ position: 'relative' }} onPress={onImagePressed} >
-                            <Image
-                                style={{ height: imageSize, width: imageSize, borderRadius: imageSize, borderColor: mainColor, borderWidth: 5, opacity: 1, marginBottom: 18, }}
-                                source={{ uri: image }}
-                            />
-                            <MaterialCommunityIcons name="image" size={40} color={mainColor} style={{ position: 'absolute', paddingLeft: 80, paddingTop: 84 }} />
-                        </TouchableOpacity>
-                    </View>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.root}>
+                <View>
+                    <TouchableOpacity style={{ position: 'relative' }} onPress={onImagePressed} >
+                        <Image
+                            style={{ height: imageSize, width: imageSize, borderRadius: imageSize, borderColor: mainColor, borderWidth: 5, opacity: 1, marginBottom: 18, }}
+                            source={{ uri: image }}
+                        />
+                        <MaterialCommunityIcons name="image" size={40} color={mainColor} style={{ position: 'absolute', paddingLeft: 80, paddingTop: 84 }} />
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', paddingHorizontal: 50 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Username: </Text>
                     <CustomInput
                         name="username"
                         placeholder="Username"
@@ -76,6 +76,9 @@ const EditProfileScreen = ({ route }) => {
                             maxLength: { value: 13, message: 'Username must be less than 13 characters long' }
                         }}
                     />
+                </View>
+                <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', paddingHorizontal: 34 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Name: </Text>
                     <CustomInput
                         name="name"
                         placeholder="Name"
@@ -86,6 +89,9 @@ const EditProfileScreen = ({ route }) => {
                             maxLength: { value: 25, message: 'Name must be less than 25 characters long' }
                         }}
                     />
+                </View>
+                <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', paddingHorizontal: 35 }}>
+                    <Text style={{ fontWeight: 'bold' }}>e-mail: </Text>
                     <CustomInput
                         name="email"
                         placeholder="email"
@@ -95,6 +101,9 @@ const EditProfileScreen = ({ route }) => {
                             pattern: { value: EMAIL_REGEX, message: 'Invalid email' }
                         }}
                     />
+                </View>
+                <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', paddingHorizontal: 50 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Password: </Text>
                     <CustomInput
                         name="password"
                         placeholder="Password"
@@ -106,6 +115,9 @@ const EditProfileScreen = ({ route }) => {
                             maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
                         }}
                     />
+                </View>
+                <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', paddingHorizontal: 50 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Password: </Text>
                     <CustomInput
                         name="passwordRepeat"
                         placeholder="Confirm password"
@@ -119,19 +131,19 @@ const EditProfileScreen = ({ route }) => {
                                 value === pwd || 'Passwords do not match'
                         }}
                     />
-                    <View style={{ marginTop: 10, width: 250, alignItems: 'center' }}>
-                        <CustomButton text="Update Now!" onPress={handleSubmit(onUpdatePressed)} />
-                    </View>
+                </View>
+                <View style={{ marginTop: 10, width: 250, alignItems: 'center' }}>
+                    <CustomButton text="Update Now!" onPress={handleSubmit(onUpdatePressed)} />
                 </View>
             </ScrollView>
-        </ScreenContainer>
     )
 }
 
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
-        padding: 20,
+        paddingTop: 20,
+        paddingBottom: 0
 
     },
     logo: {

@@ -21,7 +21,7 @@ const WelcomeScreen = () => {
     }
     
     const onTermsPressed = () => {
-        console.warn("terms")
+        nav.navigate("Terms")
     }
 
     return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, RefreshControl } from 'react-native'
 import Logo from '../../../../assets/NowLogoIconV2-01.png'
 import { useNavigation } from '@react-navigation/native'
 
@@ -11,12 +11,24 @@ const mainColor = "#2a3491"
 
 const HomeScreen = ({ navigation }) => {
 
+    const [refreshing, setRefreshing] = React.useState(false)
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true)
+        setTimeout(() => {
+            setRefreshing(false)
+        }, 2000)
+    }, [])
+
     const { height } = useWindowDimensions()
     const nav = useNavigation()
     const data = DummyData
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            refreshControl={
+                <RefreshControl refreshing = {refreshing} onRefresh={onRefresh} title="Pull to refresh"/>
+            }>
             <View style={styles.root}>
                 {data.map(dat =>
                     <NowCard
@@ -35,6 +47,9 @@ const HomeScreen = ({ navigation }) => {
                         followers={dat.followers}
                         following={dat.following}
                     />)}
+            </View>
+            <View style={{alignItems:'center', paddingBottom: 20, opacity:.5}}>
+                <Text>That's it for Now!</Text>
             </View>
         </ScrollView>
     )

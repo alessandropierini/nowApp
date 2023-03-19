@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { enableScreens } from 'react-native-screens';
 enableScreens(false);
@@ -65,6 +65,11 @@ const Navigation = () => {
                 } catch (e) {
                     console.log(e)
                 }
+            } else {
+                Alert.alert(
+                    'Login Error',
+                    'Invalid user or password',
+                )
             }
             dispatch({ type: 'LOGIN', id: userName, token: userToken })
         },

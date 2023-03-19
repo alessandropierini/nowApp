@@ -27,6 +27,8 @@ const HomeStack = () => {
             headerShown: true,
             headerStyle: {
                 backgroundColor: mainColor,
+                shadowColor: 'transparent', // this covers iOS
+                elevation: 0, // this covers Android
             },
             headerTitleAlign: 'center',
             headerBackTitle: "Back",
@@ -43,7 +45,7 @@ const HomeStack = () => {
                 headerTitleAlign: 'center',
                 headerTransparent: false,
                 headerRight: () => (
-                    <Ionicons style={{ color: tabsColor, padding: 15 }} name="search" size={27}  onPress={() => {nav.navigate('SearchScreen')}}/>
+                    <Ionicons style={{ color: tabsColor, paddingRight: 15 }} name="search" size={27}  onPress={() => {nav.navigate('SearchScreen')}}/>
                 )
             }} />
             <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} options = {{title: 'User Profile'}}/>

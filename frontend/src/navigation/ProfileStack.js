@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
-import { Pressable, Alert } from 'react-native';
+import { Pressable, Alert, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 
 import ProfileScreen from '../screens/ProfileStackScreens/ProfileScreen';
@@ -9,6 +9,7 @@ import ProfileFollowersScreen from '../screens/CommonScreens/ProfileFollowersScr
 import ProfileFollowingScreen from '../screens/CommonScreens/ProfileFollowingScreen';
 
 import { AuthContext } from '../context/AuthContext';
+import CommentScreen from '../screens/HomeStackScreens/CommentScreen';
 
 const Stack = createStackNavigator()
 
@@ -23,7 +24,7 @@ const ProfileStack = () => {
             'Are you sure you want to log out?',
             [
                 { text: 'Cancel', style: 'cancel' },
-                {text: "Log out", onPress: () => signOut()}]
+                { text: "Log out", onPress: () => signOut() }]
         )
     }
 
@@ -34,6 +35,8 @@ const ProfileStack = () => {
             headerShown: true,
             headerStyle: {
                 backgroundColor: mainColor,
+                shadowColor: 'transparent', // this covers iOS
+                elevation: 0, // this covers Android
             },
             headerTitleAlign: 'center',
             headerBackTitle: "Back",
@@ -43,10 +46,10 @@ const ProfileStack = () => {
             <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
                 title: 'Profile',
                 headerRight: () => (
-                    <Pressable>
-                         <Ionicons style={{ color: 'white', padding: 10 }} name="exit" size={24} onPress={onLogoutPressed} />
-                    </Pressable>
-                 )
+                    <TouchableOpacity>
+                        <Ionicons style={{ color: 'white', padding: 10 }} name="exit" size={24} onPress={onLogoutPressed} />
+                    </TouchableOpacity>
+                )
             }}
 
             />
@@ -57,6 +60,9 @@ const ProfileStack = () => {
                 title: 'Following'
             }} />
             <Stack.Screen name="ProfileFollowersScreen" component={ProfileFollowersScreen} options={{
+                title: 'Followers'
+            }} />
+            <Stack.Screen name="CommentScreen" component={CommentScreen} options={{
                 title: 'Followers'
             }} />
 

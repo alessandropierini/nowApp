@@ -36,6 +36,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         width: '50%',
     },
+    container_FOLLOW2: {
+        backgroundColor: 'black',
+        width: '50%',
+    },
     text_FOLLOW: {
         fontSize: 16,
         fontWeight: 'bold',

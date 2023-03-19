@@ -6,14 +6,10 @@ import CustomButton from '../../../components/customButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 
-import { AuthContext } from '../../../context/AuthContext'
-
 const mainColor = "#2a3491"
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
-const SignUpScreen = () => {
-
-    const { signUp } = React.useContext(AuthContext)
+const TermsScreen = () => {
 
     const { height } = useWindowDimensions()
     const nav = useNavigation()
@@ -25,45 +21,30 @@ const SignUpScreen = () => {
     })
     const pwd = watch('password')
 
-    const onRegisterPressed = (data) => {
+    const onResetPressed = (data) => {
         console.log(data)
-        if (errors) { } else {
-            signUp()
-        }
     }
 
-    const onSignInPressed = () => {
+    const onBackPressed = () => {
         nav.navigate("SignIn")
     }
 
-    const onTermsPressed = () => {
-        nav.navigate("Terms")
-    }
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
-                <Image source={Logo} style={[styles.logo, { height: height * 0.1 }]} resizeMode="contain" />
-                <Text style={styles.title}>Create an account Now!</Text>
-
+                <Text style={styles.title}>Reset your password Now!</Text>
+                <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 20, paddingTop: 10 }}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
+                        Please, introduce your username and the email you registered with to reset your password.
+                    </Text>
+                </View>
                 <CustomInput
                     name="username"
-                    placeholder="Username"
+                    placeholder="username"
                     control={control}
                     rules={{
                         required: 'Username is required',
-                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
-                        maxLength: { value: 13, message: 'Username must be less than 13 characters long' }
-                    }}
-                />
-                <CustomInput
-                    name="name"
-                    placeholder="Name"
-                    control={control}
-                    rules={{
-                        required: 'Username is required',
-                        minLength: { value: 3, message: 'Name must be at least 7 characters long' },
-                        maxLength: { value: 25, message: 'Name must be less than 25 characters long' }
                     }}
                 />
                 <CustomInput
@@ -77,34 +58,34 @@ const SignUpScreen = () => {
                 />
                 <CustomInput
                     name="password"
-                    placeholder="Password"
+                    placeholder="New password"
                     control={control}
                     secureTextEntry
                     rules={{
                         required: 'Password is required',
-                        minLength: { value: 7, message: 'Password must be at least 7 characters long' },
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
                         maxLength: { value: 13, message: 'Password must be less than 13 characters long' }
                     }}
                 />
                 <CustomInput
                     name="passwordRepeat"
-                    placeholder="Confirm password"
+                    placeholder="Confirm new password"
                     control={control}
                     secureTextEntry
                     rules={{
                         required: 'Please confirm your password',
-                        minLength: { value: 7, message: 'Password must be at least 7 characters long' },
+                        minLength: { value: 7, message: 'Username must be at least 7 characters long' },
                         maxLength: { value: 13, message: 'Password must be less than 13 characters long' },
                         validate: value =>
                             value === pwd || 'Passwords do not match'
                     }}
                 />
-
-                <CustomButton text="Register Now!" onPress={handleSubmit(onRegisterPressed)} />
-
-                <Text style={styles.text}>By registering, you accept our <Text style={styles.link} onPress={onTermsPressed}>Terms of use & Privacy Policy</Text>!</Text>
-
-                <CustomButton text="Already have an account? Sign in Now!" onPress={onSignInPressed} type="TERTIARY" />
+                <View style={{paddingTop: 25}}>
+                    <CustomButton text="Reset Password Now!" onPress={handleSubmit(onResetPressed)} />
+                </View>
+                <View style={{paddingTop: 50}}>
+                    <CustomButton text="Go back to Sign in" onPress={onBackPressed} type="TERTIARY" />
+                </View>
             </View>
         </ScrollView>
     )
@@ -137,4 +118,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SignUpScreen
+export default TermsScreen

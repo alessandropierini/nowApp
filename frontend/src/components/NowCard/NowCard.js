@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Touchable } from 'react-native'
 import React, { useState } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -9,18 +9,22 @@ const mainColor = "#2a3491"
 const defaultImage = "https://t3.ftcdn.net/jpg/00/64/67/52/360_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg"
 const profSize = 40
 
-const NowCard = ({ key, id, name, verified, tweet, image, prof, time, like, reply, nav, comment, bio, following, followers }) => {
+const NowCard = ({ key, id, name, verified, tweet, image, prof, time, like, reply, nav, comment, bio, following, followers, isUser = false }) => {
 
     const [toggle, setToggle] = useState(true)
     const handleLike = () => {
         setToggle(!toggle)
-        if(toggle == true){
+        if (toggle == true) {
             like = like + 1
             console.log("trueeee")
         } else {
-            like = like - 1 
+            like = like - 1
             console.log('falseeee')
         }
+    }
+
+    const onDeletePressed = () => {
+        console.warn('deleted')
     }
 
     return (
@@ -43,7 +47,11 @@ const NowCard = ({ key, id, name, verified, tweet, image, prof, time, like, repl
                         {verified && <MaterialIcons name="verified" color={mainColor} size={20} />}
                         <Text style={styles.idText}>{moment(time).fromNow()}</Text>
                     </View>
-
+                    {isUser && <View style={{ paddingRight: 15 }}>
+                        <TouchableOpacity>
+                            <MaterialCommunityIcons name="trash-can" color="gray" size={20} onPress={onDeletePressed}/>
+                        </TouchableOpacity>
+                    </View>}
                 </View>
                 <View style={styles.nowCont}>
                     <Text style={styles.nowText}>{tweet}</Text>
@@ -57,15 +65,25 @@ const NowCard = ({ key, id, name, verified, tweet, image, prof, time, like, repl
                 </View>
                 <View style={styles.actionCont}>
                     <View style={styles.iconCont}>
-                        {comment ? 
-                        <MaterialCommunityIcons name="message-reply-outline" color="gray" size={20} />
-                        : <MaterialCommunityIcons name="message-reply-outline" color="gray" size={20} onPress={() => { nav.navigate("CommentScreen", { key, id, name, verified, tweet, image, prof, time, like, reply }) }} />}
-                        <Text style={styles.idText}>{abbreviateNumber(reply,1)}</Text>
+                        {comment ?
+                            <TouchableOpacity>
+                                <MaterialCommunityIcons name="message-reply-outline" color="gray" size={20} />
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity>
+                                <MaterialCommunityIcons name="message-reply-outline" color="gray" size={20} onPress={() => { nav.navigate("CommentScreen", { key, id, name, verified, tweet, image, prof, time, like, reply }) }} />
+                            </TouchableOpacity>}
+                        <Text style={styles.idText}>{abbreviateNumber(reply, 1)}</Text>
                     </View>
                     <View style={styles.iconCont}>
                         {toggle ?
-                            <MaterialCommunityIcons name="heart-outline" color="gray" size={20} onPress={handleLike} />
-                            : <MaterialCommunityIcons name="heart" color="#dd0000" size={20} onPress={handleLike} />}
+                            <TouchableOpacity>
+                                <MaterialCommunityIcons name="heart-outline" color="gray" size={20} onPress={handleLike} />
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity>
+                                <MaterialCommunityIcons name="heart" color="#dd0000" size={20} onPress={handleLike} />
+                            </TouchableOpacity>}
                         <Text style={styles.idText}>{abbreviateNumber(like, 1)}</Text>
                     </View>
                 </View>

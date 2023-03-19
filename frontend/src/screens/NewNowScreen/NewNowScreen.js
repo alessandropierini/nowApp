@@ -34,12 +34,12 @@ const NewNowScreen = () => {
             var trimmedNow = now.trim()
             var instant = moment()
             console.log({ DummyUserData, image, trimmedNow, instant })
-
-
-            // nav.navigate('HomeScreen')
-
+            nav.navigate('HomeScreen')
+            this.textInput.clear()
+            setImage(null)
         }
     }
+
     const [image, setImage] = useState(null)
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -64,6 +64,7 @@ const NewNowScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <TextInput
+                        ref={input => { this.textInput = input }}
                         placeholder='Whats on your mind right Now?'
                         placeholderTextColor={'gray'}
                         maxLength={150}
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingLeft: 25,
         textAlignVertical: 'top',
-        height: '100%',
+        height: 120,
         width: ScreenWidth,
         marginBottom: 12,
         color: 'black',
