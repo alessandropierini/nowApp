@@ -60,7 +60,6 @@ const NewNowScreen = () => {
     }
 
     return (
-        <ScreenContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <TextInput
@@ -125,7 +124,6 @@ const NewNowScreen = () => {
                     </View>
                 </View>
             </ScrollView>
-        </ScreenContainer>
     )
 }
 
