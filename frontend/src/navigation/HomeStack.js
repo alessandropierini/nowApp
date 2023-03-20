@@ -16,6 +16,8 @@ const tabsColor = 'white'
 
 const Stack = createStackNavigator()
 
+//Homescreen navigation
+
 const HomeStack = () => {
 
     const nav = useNavigation()

@@ -12,8 +12,7 @@ const Tabs = createBottomTabNavigator()
 const mainColor = "#2a3491"
 const tabsColor = 'white'
 
-const logoOutline = "../../assets/NowLogoIconBlancoV2-01.png"
-const logoFilled = "../../assets/NowLogoIconBlancoFilledV2-01.png"
+//Main App navigation
 
 const HomeTabs = () => {
 

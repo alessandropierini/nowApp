@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form'
 const mainColor = "#2a3491"
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
+//Uses email to validate user (private), resets password
+
 const ForgotPasswordScreen = () => {
 
     const { height } = useWindowDimensions()

@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native'
 
 const ScreenWidth = Dimensions.get('window').width
 
+//Displays the users in database that matches search
+
 const SearchScreen = ({ navigation }) => {
 
     const nav = useNavigation()

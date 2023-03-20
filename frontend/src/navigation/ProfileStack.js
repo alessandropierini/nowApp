@@ -15,6 +15,8 @@ const Stack = createStackNavigator()
 
 const mainColor = "#2a3491"
 
+//Profile screen navigation screens
+
 const ProfileStack = () => {
 
     const { signOut } = React.useContext(AuthContext)

@@ -13,13 +13,12 @@ const mainColor = "#2a3491"
 const ScreenWidth = Dimensions.get('window').width
 const ScreenHeight = Dimensions.get('window').height
 
-const imageSelected = "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
 
 const NewNowScreen = () => {
 
-
     const nav = useNavigation()
 
+    //Function to check if Now is empty, and to clear after submit
     const [now, setNow] = useState("")
     const onPostPressed = () => {
         if (!now.trim().length) {
@@ -40,6 +39,7 @@ const NewNowScreen = () => {
         }
     }
 
+    //Image pick function
     const [image, setImage] = useState(null)
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -52,9 +52,7 @@ const NewNowScreen = () => {
         setImage(result.assets[0].uri);
     }
 
-    function onAddImagePressed() {
-        setImage(true)
-    }
+    //Clears image selected
     const onImagePressed = () => {
         setImage(false)
     }

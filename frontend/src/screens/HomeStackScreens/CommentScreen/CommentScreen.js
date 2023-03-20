@@ -14,6 +14,8 @@ const ScreenHeight = Dimensions.get('window').height
 const mainColor = "#2a3491"
 const CommentData = DummyCommentData
 
+//Using data from Now, shows the Now, comments and allows for comment creation
+
 const CommentScreen = ({ route }) => {
 
   const nav = useNavigation()

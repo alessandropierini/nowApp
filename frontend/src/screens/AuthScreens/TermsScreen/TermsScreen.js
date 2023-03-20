@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form'
 const mainColor = "#2a3491"
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
+//Displays Terms and conditions of the app
+
 const TermsScreen = () => {
 
     const { height } = useWindowDimensions()

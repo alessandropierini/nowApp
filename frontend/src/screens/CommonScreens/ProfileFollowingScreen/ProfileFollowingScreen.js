@@ -8,6 +8,8 @@ import { ScreenContainer } from 'react-native-screens'
 
 const mainColor = "#2a3491"
 
+//Displays following of other users
+
 const ProfileFollowingScreen = () => {
 
     const nav = useNavigation()

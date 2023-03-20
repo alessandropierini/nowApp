@@ -10,6 +10,8 @@ import { AuthContext } from '../../../context/AuthContext'
 
 const mainColor = "#2a3491"
 
+//Handles signin calling signin function from navigation/index.js
+
 const SignInScreen = () => {
 
     const nav = useNavigation()

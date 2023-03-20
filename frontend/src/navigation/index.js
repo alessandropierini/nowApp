@@ -12,6 +12,8 @@ import SplashScreen from '../screens/SplashScreen';
 import { AuthContext } from '../context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+//Main file where all navigation takes place, including login
+
 const Navigation = () => {
 
     const initialLoginState = {
@@ -54,6 +56,7 @@ const Navigation = () => {
 
     const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState)
 
+    //SignIn, SignUp, SignOut petitions
     const authContext = React.useMemo(() => ({
         signIn: async (userName, password) => {
             let userToken
@@ -87,6 +90,7 @@ const Navigation = () => {
         }
     }))
 
+    //On app launch, checks if previous session exists
     useEffect(() => {
         setTimeout(async () => {
             let userToken
@@ -109,6 +113,7 @@ const Navigation = () => {
     }
 
     return (
+        //Checks if userToken exists
         <AuthContext.Provider value={authContext}>
             <NavigationContainer>
                 {loginState.userToken !== null ? (

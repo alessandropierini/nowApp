@@ -11,6 +11,8 @@ import { AuthContext } from '../../../context/AuthContext'
 const mainColor = "#2a3491"
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
+//Handles signup, calling function from navigation/index.js, with prescreening before petition
+
 const SignUpScreen = () => {
 
     const { signUp } = React.useContext(AuthContext)

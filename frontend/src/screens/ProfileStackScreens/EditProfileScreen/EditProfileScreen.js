@@ -14,10 +14,10 @@ const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~
 const data = DummyUserData
 const mainColor = "#2a3491"
 
+//Profile image editing, user info update
 
 const EditProfileScreen = ({ route }) => {
 
-    // const { key, id, name, verified, tweet, image, prof time, like, reply } = route.params
     const prof = data[0].prof
     const imageSize = 120
 

@@ -9,6 +9,8 @@ import TermsScreen from '../screens/AuthScreens/TermsScreen';
 
 const Stack = createStackNavigator()
 
+//All Authentication flow screens are declared
+
 const AuthStack = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false, headerTransparent: true }} initialRouteName="WelcomeScreen">

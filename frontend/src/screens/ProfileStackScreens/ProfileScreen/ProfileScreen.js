@@ -16,6 +16,8 @@ import { DummyUserData } from '../../../mock/DummyUserData'
 const mainColor = "#2a3491"
 const userData = DummyUserData
 
+//Signed in user profile screen, shows user tweets and allows signout and edit profile
+
 const filteredTweets = DummyData.filter(dat => dat.id.includes('sofe'))
 
 const ProfileScreen = () => {

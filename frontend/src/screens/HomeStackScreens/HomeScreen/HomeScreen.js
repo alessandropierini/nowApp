@@ -9,6 +9,8 @@ import { DummyData } from '../../../mock/DummyData'
 
 const mainColor = "#2a3491"
 
+//Displays all the Nows, allows for navigation to profile and comments
+
 const HomeScreen = ({ navigation }) => {
 
     const [refreshing, setRefreshing] = React.useState(false)

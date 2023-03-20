@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native'
 
 const mainColor = "#2a3491"
 
+//Initial screen, redirects to signin or signup
+
 const WelcomeScreen = () => {
 
     const { height } = useWindowDimensions()
